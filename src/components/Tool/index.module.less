@@ -1,0 +1,40 @@
+.position {
+  position: fixed;
+  top: 200px;
+  right: 0px;
+  width: 60px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: @box-s;
+  overflow: hidden;
+  padding: 10px 0 0px;
+  background-color: #ffffff;
+}
+
+.tool {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  &_item {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all .5s ease;
+
+    &:hover {
+      color: red;
+    }
+
+    span {
+      display: inline-block;
+      margin-top: -10px;
+      height: 20px;
+      line-height: 12px;
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+}

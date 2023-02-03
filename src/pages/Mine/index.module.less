@@ -1,0 +1,219 @@
+.mine {
+  position: relative;
+  margin: 40px 160px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: @box-s;
+
+  &_info {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 160px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ccc;
+
+    &::after {
+      position: absolute;
+      content: '点击更改头像';
+      bottom: 4px;
+      left: 30px;
+      font-size: 14px;
+      width: 100px;
+      height: 20px;
+      text-align: center;
+      line-height: 20px;
+      color: #ccc;
+    }
+
+    img {
+      position: relative;
+      margin: 10px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+    }
+
+    &_file {
+      cursor: pointer;
+      opacity: 0;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 140px;
+      height: 140px;
+      border: 1px solid red;
+      border-radius: 50%;
+    }
+
+    &_name {
+      position: relative;
+      margin: 10px 0;
+      height: 140px;
+      line-height: 140px;
+      padding-left: 24px;
+      font-size: 30px;
+      font-family: sans-serif;
+
+    }
+
+    &_tips {
+      margin: 10px 0;
+      height: 140px;
+      line-height: 140px;
+
+      span {
+        cursor: pointer;
+        display: inline-block;
+        margin-left: 12px;
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 10px;
+        text-align: center;
+        color: black;
+        transition: ease .4s all;
+
+        &:hover {
+          color: rgba(255, 255, 255, 0.6);
+        }
+      }
+    }
+  }
+
+  &_detail {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &_left {
+      width: 400px;
+      margin-right: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      border: 1px solid red;
+
+      &_item {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        text-align: left;
+        font-size: 16px;
+        font-family: sans-serif;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin: 6px 0;
+        border-bottom: 1px solid #ccc;
+      }
+    }
+
+    &_right {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      height: 40px;
+      margin-left: 24px;
+
+      &_item {
+        padding-left: 12px;
+        width: 100%;
+        line-height: 40px;
+        text-align: left;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        border-bottom: 1px solid black;
+
+        &_content {
+          width: 500px;
+          height: 100%;
+          line-height: 40px;
+          text-indent: 2em;
+          text-align: left;
+        }
+
+
+        span {
+          display: inline-block;
+          width: 60px;
+          text-align: center;
+          height: 100%;
+          line-height: 40px;
+          font-size: 20px;
+        }
+
+        &_btn {
+          width: 100px;
+          height: 30px;
+          margin: 5px;
+          line-height: 30px;
+
+          button {
+            cursor: pointer;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 10px;
+            border: none;
+            transition: ease .5s all;
+
+            &:hover {
+              background-color: #f2f2f2;
+              color: skyblue;
+            }
+          }
+        }
+      }
+    }
+
+
+  }
+
+  &_op {
+    position: absolute;
+    bottom: 12px;
+    right: 36px;
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: end;
+
+    button {
+      cursor: pointer;
+      outline: none;
+      border: none;
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      border-radius: 5px;
+      text-align: center;
+      background-color: aqua;
+      margin-right: 12px;
+      transition: ease .5s all;
+
+      &:hover {
+        color: rgb(223, 87, 87);
+      }
+    }
+  }
+}
+
+.modleInput {
+  width: 90%;
+  height: 40px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid black;
+  padding-left: 14px;
+  font-size: 16px;
+  color: #999;
+  margin-bottom: 6px;
+}

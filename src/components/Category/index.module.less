@@ -1,0 +1,34 @@
+.category {
+  width: 100%;
+  height: 100%;
+  background-color: #f7f9fa;
+  padding: 15px 20px 10px;
+
+  &_title {
+    font-weight: bolder;
+    margin: 5px 0;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+    li {
+      list-style: none;
+      margin: 5px 0;
+      height: 30px;
+
+      &:hover {
+        color: red;
+      }
+
+      span {
+        cursor: pointer;
+        margin-right: 10px;
+        line-height: 30px;
+        text-align: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+.good {
+  margin: 20px 0;
+
+  &_title {
+    height: 30px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ccc;
+
+    span {
+      height: 100%;
+
+      &:nth-child(1) {
+        display: inline-block;
+        font-size: 24px;
+        color: #111;
+        height: 100%;
+        line-height: 30px;
+      }
+
+      &:nth-child(2) {
+        display: inline-block;
+        border-radius: 4px;
+        height: 20px;
+        width: 80px;
+        margin: 5px 15px;
+        background-color: orange;
+        text-align: center;
+        font-size: 14px;
+        color: #fff;
+      }
+    }
+
+
+
+  }
+
+  &_list {
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+}

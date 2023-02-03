@@ -1,0 +1,47 @@
+import React from "react";
+import s from './index.module.less'
+import { CloseCircleOutlined,SearchOutlined } from '@ant-design/icons'
+
+
+type Props = {
+  value: string,
+  onChange: (value:string) => void,
+  placeholder: string,
+  type: 'text' | 'number' | 'main' | 'search',
+  onclick?:()=>void
+}
+const Input: React.FC<Props> = ({ placeholder, value, onChange, type,onclick }) => {
+
+  
+  const returnInputByType = () => {
+    switch (type) {
+      case 'main':
+        return <div>
+          <input type="text" placeholder={placeholder} value={value} onChange={(e)=>onChange(e.target.value)} />
+        </div>
+        break;
+      case 'text':
+        return <div className={s.inputTotal}> 
+        <input type={type} placeholder={placeholder} value={value} className={s.inputTotal_input} onChange={e => onChange?.(e.target.value)} />
+        <div className={s.inputTotal_icon}>
+         <CloseCircleOutlined />
+        </div>
+      </div>
+        break;
+      case 'search':
+        return <div className={s.search}>
+          <input type="text" value={value} onChange={e=>onChange?.(e.target.value)} placeholder={placeholder}/>
+          <button onClick={onclick}><SearchOutlined /></button>
+        </div>
+        break;
+      default:
+        return <input type="text" />
+    }
+  }
+
+  return (
+    returnInputByType()
+  )
+}
+
+export default Input
