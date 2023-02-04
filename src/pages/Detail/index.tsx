@@ -13,7 +13,7 @@ const Detail: React.FC = () => {
   const { state } = useLocation()
 
   const CollectionItem = (id:string) => {
-    alert('收藏物品接口-Detail-Components:',id)
+    alert(`收藏物品接口-Detail-Components:id=${id}`)
   }
 
   return <div>

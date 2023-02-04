@@ -1,11 +1,29 @@
 .clothing {
   padding: 20px;
 
-  &_img {
-    border: 1px solid rgba(151, 219, 238, 0.456);
+  border-radius: 20px;
+
+  &_box {
+    position: relative;
     border-radius: 20px;
-    height: 400px;
-    margin-bottom: 20px;
+    overflow: hidden;
+
+    &_img {
+      border: 1px solid rgba(151, 219, 238, 0.456);
+      height: 400px;
+      margin-bottom: 20px;
+      cursor: move;
+    }
+
+    &_cover {
+      cursor: move;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100px;
+      height: 100px;
+      background-color: rgba(186, 227, 239, 0.456);
+    }
   }
 
 
