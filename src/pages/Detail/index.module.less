@@ -10,11 +10,25 @@
   &_show {
     width: 360px;
     box-shadow: @box-s;
+    border-radius: 20px;
 
-    img {
-      margin: 30px;
-      width: 300px;
-      height: 400px;
+    &_like {
+      cursor: pointer;
+      margin: 4px 10px 20px;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      border: 1px solid red;
+      transition: all .4s ease;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: #fff9f5;
+      }
+
+      span {
+        margin-left: 12px;
+      }
     }
   }
 
@@ -29,6 +43,49 @@
       font-size: 20px;
       line-height: 150%;
       padding-bottom: 6px;
+    }
+
+    &_tips {
+      span {
+        display: inline-block;
+        width: 100px;
+        margin: 16px 4px 4px 0;
+        color: white;
+        cursor: pointer;
+        background-color: #ffa500;
+        height: 30px;
+        border-radius: 5px;
+        line-height: 30px;
+        text-align: center;
+        transition: all .4s ease-in;
+
+        &:hover {
+          color: #000;
+        }
+      }
+    }
+
+    &_price {
+      color: red;
+      margin: 16px 0;
+      font-size: 14px;
+      height: 40px;
+      line-height: 40px;
+      padding-left: 12px;
+      background-color: #fff2e8;
+
+      span:nth-of-type(1) {
+        display: inline-block;
+        margin-right: 12px;
+        font-size: 18px;
+        color: black;
+        display: inline-block;
+      }
+
+      span:nth-of-type(2) {
+        font-size: 18px;
+        display: inline-block;
+      }
     }
   }
 }

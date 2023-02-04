@@ -1,0 +1,30 @@
+.clothing {
+  padding: 20px;
+
+  &_img {
+    border: 1px solid rgba(151, 219, 238, 0.456);
+    border-radius: 20px;
+    height: 400px;
+    margin-bottom: 20px;
+  }
+
+
+  &_mini {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+
+    &_img {
+      margin: 4px 0 10px;
+      width: 40px;
+      height: 60px;
+      border: 1px dashed #ccc;
+      cursor: pointer;
+
+      &:hover {
+        border: 1px solid black;
+      }
+    }
+  }
+}

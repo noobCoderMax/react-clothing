@@ -7,9 +7,10 @@ type Props = {
   info: string,
   tips?:string[]
   price: string,
+  images:string[]
 }
 
-const GoodShow: React.FC<Props> = ({ imgSrc, price, info, tips, id }) => {
+const GoodShow: React.FC<Props> = ({ imgSrc, price, info, tips, id,images }) => {
   const navigate = useNavigate()
 
   // 跳转到详情页
@@ -20,7 +21,8 @@ const GoodShow: React.FC<Props> = ({ imgSrc, price, info, tips, id }) => {
         price,
         info,
         tips,
-        id
+        id,
+        images
       },
       replace:false
     })
