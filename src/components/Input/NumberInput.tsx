@@ -23,9 +23,9 @@ const NumberInput: React.FC<Props> = (props) => {
   }
 
   return <div className={s.number}>
-    <button className={s.number_left} onClick={() => handleCount(false)} disabled={count <= 0 ? true : false}>
+    <button className={s.number_left} onClick={() => handleCount(false)} disabled={count <= 1 ? true : false}>
     {
-        count <= 0 ?
+        count <= 1 ?
         <img src={ban} alt="禁止" style={{filter:"#7b7d7e"}}></img>
         :
         <img src={decrease} alt="decrease"></img>

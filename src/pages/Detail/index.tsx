@@ -48,9 +48,14 @@ const Detail: React.FC = () => {
         <div className={s.detail_content_price}>
             <span>超值价格:</span>￥<span>{state.price}</span>
         </div>
+
+        <div className={s.detail_content_size}>
+        <div className={s.label}>尺码   :</div>
+        </div>
+
         <div className={s.detail_content_count}>
-          数量:
-          <Input type="number" value={count.toString()}  onChange={(e)=>handleGoodCount(e)}/>
+          <div className={s.label}>数量   :</div>
+          <Input type="number" value={count.toString()} onChange={(e) => handleGoodCount(e)} />
         </div>
         </div>
     </div>
