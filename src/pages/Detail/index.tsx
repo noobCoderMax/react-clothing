@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import ClothingShow from "../../components/ClothingShow";
 import Header from "../../components/Header";
 import s from './index.module.less'
 import { StarOutlined } from '@ant-design/icons'
+import Input from "../../components/Input";
 
 const starStyle: React.CSSProperties = {
   color: '#ff8f1c',
@@ -11,9 +12,18 @@ const starStyle: React.CSSProperties = {
 
 const Detail: React.FC = () => {
   const { state } = useLocation()
+  const [count,setCount] = useState<number>(0)
 
   const CollectionItem = (id:string) => {
     alert(`收藏物品接口-Detail-Components:id=${id}`)
+  }
+
+  useEffect(() => {
+    console.log("count",count);
+   },[count])
+
+  const handleGoodCount = (count: string | number) => {
+    setCount( count = typeof count === "number" ? count : parseInt(count))
   }
 
   return <div>
@@ -37,6 +47,10 @@ const Detail: React.FC = () => {
         </div>
         <div className={s.detail_content_price}>
             <span>超值价格:</span>￥<span>{state.price}</span>
+        </div>
+        <div className={s.detail_content_count}>
+          数量:
+          <Input type="number" value={count.toString()}  onChange={(e)=>handleGoodCount(e)}/>
         </div>
         </div>
     </div>

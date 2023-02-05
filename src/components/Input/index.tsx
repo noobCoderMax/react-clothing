@@ -1,17 +1,17 @@
 import React from "react";
 import s from './index.module.less'
 import { CloseCircleOutlined,SearchOutlined } from '@ant-design/icons'
+import NumberInput from "./NumberInput";
 
 
 type Props = {
   value: string,
-  onChange: (value:string) => void,
-  placeholder: string,
+  onChange: (value:string | number) => void,
+  placeholder?: string ,
   type: 'text' | 'number' | 'main' | 'search',
   onclick?:()=>void
 }
 const Input: React.FC<Props> = ({ placeholder, value, onChange, type,onclick }) => {
-
   
   const returnInputByType = () => {
     switch (type) {
@@ -33,6 +33,9 @@ const Input: React.FC<Props> = ({ placeholder, value, onChange, type,onclick }) 
           <input type="text" value={value} onChange={e=>onChange?.(e.target.value)} placeholder={placeholder}/>
           <button onClick={onclick}><SearchOutlined /></button>
         </div>
+        break;
+      case 'number':
+        return <NumberInput getValue={(e)=>onChange(e)}/>
         break;
       default:
         return <input type="text" />
