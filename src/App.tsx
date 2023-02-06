@@ -1,5 +1,6 @@
 import { useRoutes } from "react-router-dom";
 import Tool from "./components/Tool";
+import WeatherCard from "./components/WeatherCard";
 import routes from "./router";
 
 function App() {
@@ -7,7 +8,8 @@ function App() {
   return (
     <>
       <div>{outlet}</div>
-      <Tool/>
+      <Tool />
+      <WeatherCard/>
     </>
   );
 }

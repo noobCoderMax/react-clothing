@@ -2,13 +2,14 @@ import React from "react";
 import s from './index.module.less'
 import { CloseCircleOutlined,SearchOutlined } from '@ant-design/icons'
 import NumberInput from "./NumberInput";
-
+import SizeInput from "./SizeInput";
+import AddressInput from "./AddressInput";
 
 type Props = {
   value: string,
   onChange: (value:string | number) => void,
   placeholder?: string ,
-  type: 'text' | 'number' | 'main' | 'search',
+  type: 'text' | 'number' | 'main' | 'search' | "size" | "address",
   onclick?:()=>void
 }
 const Input: React.FC<Props> = ({ placeholder, value, onChange, type,onclick }) => {
@@ -36,6 +37,12 @@ const Input: React.FC<Props> = ({ placeholder, value, onChange, type,onclick }) 
         break;
       case 'number':
         return <NumberInput getValue={(e)=>onChange(e)}/>
+        break;
+      case 'size':
+          return <SizeInput getValue={(e)=>onChange(e)}/>
+        break;
+      case 'address':
+          return <AddressInput getValue={(e)=>onChange(e)}/>
         break;
       default:
         return <input type="text" />

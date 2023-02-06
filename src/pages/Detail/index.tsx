@@ -13,6 +13,8 @@ const starStyle: React.CSSProperties = {
 const Detail: React.FC = () => {
   const { state } = useLocation()
   const [count,setCount] = useState<number>(0)
+  const [size,setSize] = useState<string>("")
+  const [address,setAddress] = useState<string>("")
 
   const CollectionItem = (id:string) => {
     alert(`收藏物品接口-Detail-Components:id=${id}`)
@@ -20,10 +22,19 @@ const Detail: React.FC = () => {
 
   useEffect(() => {
     console.log("count",count);
-   },[count])
+    console.log("size",size);
+   },[count,size])
 
   const handleGoodCount = (count: string | number) => {
     setCount( count = typeof count === "number" ? count : parseInt(count))
+  }
+
+  const handleGoodSize = (size: string | number) => {
+    setSize( size = typeof size === "string" ? size : size.toString())
+  }
+
+  const handleGoodAddress = (address: string | number) => {
+    setAddress( address = typeof address === "string" ? address : address.toString())
   }
 
   return <div>
@@ -49,8 +60,15 @@ const Detail: React.FC = () => {
             <span>超值价格:</span>￥<span>{state.price}</span>
         </div>
 
+        <div className={s.detail_content_address}>
+          <div className={s.label}>地址   :</div>
+          <Input type="address" value={address}  onChange={(e)=>handleGoodAddress(e)}/>
+        </div>
+
+
         <div className={s.detail_content_size}>
-        <div className={s.label}>尺码   :</div>
+          <div className={s.label}>尺码   :</div>
+          <Input type="size" value={size}  onChange={(e)=>handleGoodSize(e)}/>
         </div>
 
         <div className={s.detail_content_count}>

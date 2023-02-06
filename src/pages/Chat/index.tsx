@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../../components/Header";
 import Input from "../../components/Input";
 import s from './index.module.less'
@@ -8,6 +8,7 @@ import image from '../../assets/svgs/image.svg'
 import EmojiList from "../../components/EmojiList";
 
 const Chat: React.FC = () => {
+  const messageBox = useRef<HTMLDivElement|null>(null)
   const [chatList, setChatList] = useState([
     {
       id: 1,
@@ -107,6 +108,10 @@ const Chat: React.FC = () => {
     }
   ])
 
+  useEffect(() => {
+    messageBox.current!.scrollTop = messageBox.current?.scrollHeight!
+  },[])
+
   // 当前用户ID
   const userId = 6
 
@@ -166,7 +171,7 @@ const Chat: React.FC = () => {
         <div className={s.chat_box_message}>
           <div className={s.chat_box_message_show}>
              <div className={s.chat_box_message_show_title}>小溪</div>
-            <div className={s.chat_box_message_show_content}>
+            <div className={s.chat_box_message_show_content} ref={messageBox}>
               {
                 messageList.map((item,index) => {
                   return <div key={index}>
