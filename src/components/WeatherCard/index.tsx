@@ -34,7 +34,6 @@ const WeatherCard: React.FC = () => {
 const getWeather = async  (city: string) => {
   await axios.get(`https://www.yiketianqi.com/free/day?appid=${WeatherApiData.Appid}&appsecret=${WeatherApiData.appsecret}&unescape=1&city=${city}&vue=1`)
     .then(res => {
-    console.log("结果",res.data);
     setWeather(res.data)
   })
 }
@@ -47,11 +46,27 @@ const getWeather = async  (city: string) => {
     getWeather(city)
   }
   return <div className={s.weather}>
-    <div>城市:{city}</div>
-    <input type="text" value={city} onChange={e => setCity(e.target.value)} />
-    <button onClick={() => handleCity()}>切换</button>
-    <div>weather:{weather.date}</div>
-  </div>
+      <div className={s.weather_city}>
+        <div className={s.weather_city_op}>
+          <div>{city}</div>
+          <input type="text" value={city} onChange={e => setCity(e.target.value)} />
+          <button onClick={() => handleCity()}>搜索</button>
+        </div>
+        <div className={s.weather_city_tem}>
+          <div className={s.weather_city_tem_number}>{weather.tem} </div>
+          <div className={s.weather_city_tem_sign}>℃</div>
+        </div>
+      </div>
+      <div className={s.weather_info}>
+        <div className={s.weather_info_time}>{weather.date}:{weather.update_time}更新</div>
+        <div className={s.weather_info_air}>空气质量:{weather.air}</div> 
+        <div className={s.weather_info_common}><span>天气状况:</span><span>{weather.wea}  </span>       </div>
+        <div className={s.weather_info_common}><span>实时风向:</span><span>{weather.win}   </span>      </div>
+        <div className={s.weather_info_common}><span>实时风力:</span><span>{weather.win_speed} </span>  </div>
+        <div className={s.weather_info_common}><span>最高温度:</span><span>{weather.tem_day}℃</span>   </div>
+        <div className={s.weather_info_common}><span>最低温度:</span><span>{weather.tem_night}℃ </span></div>
+      </div>
+    </div>
 }
 
 export default WeatherCard

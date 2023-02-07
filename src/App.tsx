@@ -9,7 +9,6 @@ function App() {
     <>
       <div>{outlet}</div>
       <Tool />
-      <WeatherCard/>
     </>
   );
 }
