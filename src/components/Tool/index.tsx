@@ -64,7 +64,6 @@ const Tool: React.FC = () => {
       <div className={s.tool_item} onClick={()=>weather()}><CloudOutlined style={iconStyle} /><span>天气卡片</span></div>
       <div className={s.tool_item} onClick={()=>smoothTop()}><ArrowUpOutlined style={iconStyle} /><span>回到顶部</span></div>
     </div >
-    <div className={s.weatherPosition}> 
       <Modal
         title="天气卡片"
         open={isModalOpen}
@@ -77,7 +76,6 @@ const Tool: React.FC = () => {
       >
         <WeatherCard/>
       </Modal>
-    </div>
   </div>
 }
 export default Tool
