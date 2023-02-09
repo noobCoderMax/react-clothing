@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
-import s from './index.module.less'
+import Commodity from "./Commodity";
+import s from './styles/index.module.less'
 
 
 const Checkout: React.FC = () => {
@@ -27,6 +28,7 @@ const Checkout: React.FC = () => {
         </div>
       </div>
 
+      <Commodity/>
     </div>
   </div>
 }

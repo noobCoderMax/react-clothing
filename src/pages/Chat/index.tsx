@@ -6,6 +6,7 @@ import { Button } from 'antd';
 import smail from '../../assets/svgs/smail.svg'
 import image from '../../assets/svgs/image.svg'
 import EmojiList from "../../components/EmojiList";
+import { useWebSocket } from '../../Hooks/index'
 
 const Chat: React.FC = () => {
   const messageBox = useRef<HTMLDivElement|null>(null)
@@ -53,7 +54,7 @@ const Chat: React.FC = () => {
       chatLastestTime:"2023-02-02"
     }
   ])
-  const [searchInput, setInput] = useState('')
+  const [searchInput, setInput] = useState<string>('')
   const [message, setMessage] = useState('')
   const [shouEmojiList,setShowEmojiList] = useState<boolean>(false)
   const [messageList, setMessageList] = useState([
@@ -108,6 +109,13 @@ const Chat: React.FC = () => {
     }
   ])
 
+  
+  // const handleMessage = (e: any) => {
+    
+  // }
+  // useWebSocket(handleMessage)
+
+
   useEffect(() => {
     messageBox.current!.scrollTop = messageBox.current?.scrollHeight!
   },[])
@@ -154,7 +162,14 @@ const Chat: React.FC = () => {
       <div className={s.chat_box}>
         <div className={s.chat_box_list}>
           <div className={s.chat_box_list_search}>
-            <Input type="search" placeholder="输入昵称搜索" value={searchInput} onChange={setInput} onclick={handleChatList}/>  
+            <Input
+              type="search"
+              placeholder="输入昵称搜索"
+              value={searchInput}
+              onChange={(v) =>
+                typeof v === 'string' ? setInput(v) : setInput(v.toString())
+              }
+              onclick={handleChatList} />  
           </div>
           <div className={s.chat_box_list_items}>
           {
