@@ -58,7 +58,7 @@ const getWeather = async  (city: string) => {
         </div>
       </div>
       <div className={s.weather_info}>
-        <div className={s.weather_info_time}>{weather.date}:{weather.update_time}更新</div>
+        <div className={s.weather_info_time}>{weather.date}  {weather.update_time}更新</div>
         <div className={s.weather_info_air}>空气质量:{weather.air}</div> 
         <div className={s.weather_info_common}><span>天气状况:</span><span>{weather.wea}  </span>       </div>
         <div className={s.weather_info_common}><span>实时风向:</span><span>{weather.win}   </span>      </div>

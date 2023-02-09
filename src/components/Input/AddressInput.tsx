@@ -1,5 +1,6 @@
 import React from 'react';
 import { Cascader } from 'antd';
+import s from './styles/AddressInput.module.less'
 
 type Props = {
   getValue:(value:string)=>void
@@ -5758,7 +5759,7 @@ const onChange = (value: string[]) => {
 const AddressInput: React.FC<Props> = (props) => {
   const { getValue }  = props
 
-  return <div>
+  return <div className={s.address}>
     <Cascader options={options}  placeholder="请选择地址" />
 </div>
 }
