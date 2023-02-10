@@ -6,7 +6,6 @@ import { Button } from 'antd';
 import smail from '../../assets/svgs/smail.svg'
 import image from '../../assets/svgs/image.svg'
 import EmojiList from "../../components/EmojiList";
-import { useWebSocket } from '../../Hooks/index'
 
 const Chat: React.FC = () => {
   const messageBox = useRef<HTMLDivElement|null>(null)
@@ -110,10 +109,7 @@ const Chat: React.FC = () => {
   ])
 
   
-  // const handleMessage = (e: any) => {
-    
-  // }
-  // useWebSocket(handleMessage)
+
 
 
   useEffect(() => {

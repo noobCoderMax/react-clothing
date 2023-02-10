@@ -1,214 +1,10 @@
-import React from 'react';
-import { Cascader } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Cascader, Input } from 'antd';
 import s from './styles/AddressInput.module.less'
+import {formatAddress} from '../../utils/formatAddress'
 
 type Props = {
   getValue:(value:string)=>void
-}
-
-interface Option {
-  value: string ;
-  label: string;
-  children?: Option[];
-}
-
-const options: Option[] = [
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [
-      {
-        value: 'hangzhou',
-        label: 'Hangzhou',
-        children: [
-          {
-            value: 'xihu',
-            label: 'West Lake',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    children: [
-      {
-        value: 'nanjing',
-        label: 'Nanjing',
-        children: [
-          {
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
-          },
-        ],
-      },
-    ],
-  },
-];
- 
-const rem = {
-  "name": "陕西省",
-  "city": [
-    {
-      "name": "西安市",
-      "area": [
-        "新城区",
-        "碑林区",
-        "莲湖区",
-        "灞桥区",
-        "未央区",
-        "雁塔区",
-        "阎良区",
-        "临潼区",
-        "长安区",
-        "高陵区",
-        "鄠邑区",
-        "蓝田县",
-        "周至县",
-        "西咸区"
-      ]
-    },
-    {
-      "name": "铜川市",
-      "area": [
-        "王益区",
-        "印台区",
-        "耀州区",
-        "宜君县"
-      ]
-    },
-    {
-      "name": "宝鸡市",
-      "area": [
-        "渭滨区",
-        "金台区",
-        "陈仓区",
-        "凤翔县",
-        "岐山县",
-        "扶风县",
-        "眉县",
-        "陇县",
-        "千阳县",
-        "麟游县",
-        "凤县",
-        "太白县"
-      ]
-    },
-    {
-      "name": "咸阳市",
-      "area": [
-        "秦都区",
-        "杨陵区",
-        "渭城区",
-        "三原县",
-        "泾阳县",
-        "乾县",
-        "礼泉县",
-        "永寿县",
-        "长武县",
-        "旬邑县",
-        "淳化县",
-        "武功县",
-        "兴平市",
-        "彬州市"
-      ]
-    },
-    {
-      "name": "渭南市",
-      "area": [
-        "临渭区",
-        "华州区",
-        "潼关县",
-        "大荔县",
-        "合阳县",
-        "澄城县",
-        "蒲城县",
-        "白水县",
-        "富平县",
-        "韩城市",
-        "华阴市"
-      ]
-    },
-    {
-      "name": "延安市",
-      "area": [
-        "宝塔区",
-        "安塞区",
-        "延长县",
-        "延川县",
-        "志丹县",
-        "吴起县",
-        "甘泉县",
-        "富县",
-        "洛川县",
-        "宜川县",
-        "黄龙县",
-        "黄陵县",
-        "子长市"
-      ]
-    },
-    {
-      "name": "汉中市",
-      "area": [
-        "汉台区",
-        "南郑区",
-        "城固县",
-        "洋县",
-        "西乡县",
-        "勉县",
-        "宁强县",
-        "略阳县",
-        "镇巴县",
-        "留坝县",
-        "佛坪县"
-      ]
-    },
-    {
-      "name": "榆林市",
-      "area": [
-        "榆阳区",
-        "横山区",
-        "府谷县",
-        "靖边县",
-        "定边县",
-        "绥德县",
-        "米脂县",
-        "佳县",
-        "吴堡县",
-        "清涧县",
-        "子洲县",
-        "神木市"
-      ]
-    },
-    {
-      "name": "安康市",
-      "area": [
-        "汉滨区",
-        "汉阴县",
-        "石泉县",
-        "宁陕县",
-        "紫阳县",
-        "岚皋县",
-        "平利县",
-        "镇坪县",
-        "旬阳县",
-        "白河县"
-      ]
-    },
-    {
-      "name": "商洛市",
-      "area": [
-        "商州区",
-        "洛南县",
-        "丹凤县",
-        "商南县",
-        "山阳县",
-        "镇安县",
-        "柞水县"
-      ]
-    }
-  ]
 }
 
 const address = [
@@ -5752,15 +5548,34 @@ const address = [
   }
 ]
 
-const onChange = (value: string[]) => {
-  console.log(value);
-};
+interface Option {
+  value: string ;
+  label: string;
+  children?: Option[];
+}
+
+const options:Option[] = formatAddress(address)
 
 const AddressInput: React.FC<Props> = (props) => {
-  const { getValue }  = props
+  const { getValue } = props
+  const [value, setValue] = useState<string>('')
+  const [detailAddress, setDetailAddress] = useState<string>('')
 
+  const onChange = (value: any[]) => {
+    setValue(value.join(''))
+  };
+
+  getValue(value+detailAddress)
+  
   return <div className={s.address}>
-    <Cascader options={options}  placeholder="请选择地址" />
+    <Cascader
+      style={{ width: "200px" }}
+      options={options}
+      placeholder="请选择地址"
+      onChange={onChange}
+    />
+    <div className={s.address_text}>详细地址:</div>
+    <Input style={{width:'180px'}} value={detailAddress} onChange={(e)=>setDetailAddress(e.target.value)}/>
 </div>
 }
 export default AddressInput;

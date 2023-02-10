@@ -23,7 +23,8 @@ const Detail: React.FC = () => {
   useEffect(() => {
     console.log("count",count);
     console.log("size",size);
-   },[count,size])
+    console.log("address",address);
+   },[count,size,address])
 
   const handleGoodCount = (count: string | number) => {
     setCount( count = typeof count === "number" ? count : parseInt(count))

@@ -1,7 +1,10 @@
 const WS_PORT = 'ws://localhost:3333'
 
-const useWebSocket =
-  (handleMessage: (this: WebSocket, ev: Event) => any)=>{
+type Params = {
+  handleMessage:(message:string)=>void
+}
+
+const useWebSocket =(handleMessage: (this: WebSocket, ev: Event) => any)=>{
   const ws = new WebSocket(WS_PORT)
 
   const init = () => {
