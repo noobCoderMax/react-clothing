@@ -4,6 +4,7 @@ import Chat from "../pages/Chat";
 import Checkout from "../pages/Checkout";
 import Detail from "../pages/Detail";
 import Mine from "../pages/Mine";
+import Search from "../pages/Search";
 const Login = lazy(() => import("../pages/Login"));
 const Index = lazy(() => import("../pages/Home"));
 
@@ -38,6 +39,10 @@ const routes: RouteObject[] = [
   {
     path: 'detail',
     element:withLoadingComponent(<Detail/>)
+  },
+  {
+    path: '/search',
+    element:withLoadingComponent(<Search/>)
   }
 ];
 

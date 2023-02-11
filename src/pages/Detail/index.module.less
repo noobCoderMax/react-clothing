@@ -106,6 +106,48 @@
       flex-direction: row;
       justify-content: start;
     }
+
+    &_btns {
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      height: 40px;
+      margin: 8px 20px;
+
+      button:nth-of-type(1) {
+        cursor: pointer;
+        height: 100%;
+        color: red;
+        padding: 0 30px;
+        text-align: center;
+        background-color: #ffe4d0;
+        border: none;
+        margin-right: 10px;
+        transition: all .4s ease;
+
+        &:hover {
+          background-color: #ebac7e;
+          color: white;
+        }
+      }
+
+
+      button:nth-of-type(2) {
+        cursor: pointer;
+        height: 100%;
+        padding: 0 30px;
+        text-align: center;
+        color: white;
+        border: none;
+        background-color: #ff4400;
+        transition: all .4s ease;
+
+        &:hover {
+          background-color: #fac5c5;
+          color: rgb(215, 39, 39);
+        }
+      }
+    }
   }
 }
 

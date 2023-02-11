@@ -7,8 +7,7 @@ const { Column} = Table;
 
 interface DataType {
   id:string,
-  key: React.Key;
-  firstName: string;
+  desc: string;//服装描述
   tags: string[];
   choose: boolean,
   cover: string //封面,
@@ -21,8 +20,7 @@ const App: React.FC = () => {
   const [data,setData] = useState<DataType[]>([
     {
       id:"1",
-      key: '1',
-      firstName: 'John',
+      desc: '连衣裙',
       tags: ['nice', 'developer'],
       choose: false,
       univalent: 188,
@@ -32,8 +30,7 @@ const App: React.FC = () => {
     },
     {
       id:"2",
-      key: '2',
-      firstName: 'Jim',
+      desc: '牛仔裤',
       tags: ['loser'],
       count:1,
       univalent:299, sum:299,
@@ -42,8 +39,7 @@ const App: React.FC = () => {
   
     },
     { id:"3",
-      key: '3',
-      firstName: 'Joe',
+      desc: '皮夹克皮夹克皮夹克皮夹克皮夹克皮夹克',
       tags: ['cool', 'teacher'],
       univalent: 512,
       sum: 512,
@@ -52,13 +48,14 @@ const App: React.FC = () => {
       cover:"http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg"
     },
   ])
+  const [chooseAll,setChooseAll] = useState<boolean>(false)
 
   const handleDelete = (data: DataType) => {
     setIsModalOpen(true);
     console.log("商品信息",data);
   }
 
-  const handleChecked = (choose:boolean) => {
+  const handleChecked = (choose: boolean) => {
     console.log("choose",choose);
   }
 
@@ -84,12 +81,19 @@ const App: React.FC = () => {
     setIsModalOpen(false);
   };
 
+  const handleChooseAll = () => {
+    let temp = data.map(item => {
+      item.choose = true
+    })
+    setData(temp)
+  }
+  
   return <>
    <Table dataSource={data}>
     <Column
       title={() => {
         return <div className={s.radio}>
-          <input className={s.radio_btn} type="radio" />
+          <input className={s.radio_btn} type="checkbox" checked={chooseAll} onChange={()=>setChooseAll(chooseAll=>!chooseAll)}/>
           <div className={s.radio_text}>全选</div>
         </div>
       }}
@@ -109,7 +113,7 @@ const App: React.FC = () => {
         render={(cover:string,firstName: string) => {
           return <img className={s.cover} src={cover} alt={firstName}></img>
         }} />
-    <Column title="Address" dataIndex="address" key="address" />
+    <Column title="服装信息" dataIndex="desc" key="desc" />
     <Column title="单价" dataIndex="univalent" key="univalent" render={(univalent:number)=><span className={s.univalent}>￥{univalent}</span>}/>
       <Column title="数量" dataIndex="count" key="count" render={(count: number) => {
         return <div style={{width:'120px'}}>

@@ -38,6 +38,15 @@ const Detail: React.FC = () => {
     setAddress( address = typeof address === "string" ? address : address.toString())
   }
 
+  const handleToCart = () => {
+    console.log("加入购物车");
+  }
+
+  const handleBuy = () => {
+    //useNavigate to buy Page
+    console.log("立刻购买");
+  }
+
   return <div>
     <Header />
     <div className={s.detail}>
@@ -75,6 +84,11 @@ const Detail: React.FC = () => {
         <div className={s.detail_content_count}>
           <div className={s.label}>数量   :</div>
           <Input type="number" value={count.toString()} onChange={(e) => handleGoodCount(e)} />
+        </div>
+
+        <div className={s.detail_content_btns}>
+          <button onClick={()=>handleBuy}>立刻购买</button>
+          <button onClick={()=>handleToCart}>加入购物车</button>
         </div>
         </div>
     </div>

@@ -33,6 +33,12 @@ const routeItems: routeLink[] = [
     icon: "",
     link: "/mine",
   },
+  {
+    id: 5,
+    name: "搜索",
+    icon: "",
+    link:"/search"
+  }
 ];
 
 const Header: React.FC = () => {
