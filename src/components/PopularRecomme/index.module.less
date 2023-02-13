@@ -1,0 +1,48 @@
+.popular {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  &_item {
+    box-shadow: @box-s;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid transparent;
+    transition: all 1s easy;
+
+    &:hover {
+      border: 1px solid red;
+    }
+
+    &_img {
+      width: 100%;
+      height: 340px;
+    }
+
+    &_info {
+      border-top: 1px dashed #ccc;
+      cursor: pointer;
+      padding: 0 1rem;
+      height: 30px;
+      display: flex;
+      justify-content: space-between;
+      background-color: beige;
+
+
+      &_price {
+        height: 100%;
+        color: red;
+        font-weight: bolder;
+        line-height: 30px;
+      }
+
+      &_sales {
+        height: 30px;
+        line-height: 30px;
+      }
+    }
+  }
+}

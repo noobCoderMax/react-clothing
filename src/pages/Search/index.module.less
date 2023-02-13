@@ -5,4 +5,62 @@
   border-radius: 20px;
   padding: 20px;
   box-shadow: @box-s;
+
+  &_top {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+
+    &_input {
+      border: 1px solid red;
+      height: 40px;
+
+      input {
+        text-indent: 1rem;
+        width: 500px;
+        border: none;
+        outline: none;
+        height: 38px;
+        line-height: 38px;
+        color: #ccc;
+        font-size: 14px;
+
+        &:focus {
+          color: #000;
+        }
+      }
+
+      button {
+        width: 80px;
+        height: 40px;
+        line-height: 38px;
+        text-align: center;
+        border: none;
+        outline: none;
+        background-color: red;
+        color: #fff;
+        font-weight: bolder;
+        font-size: 16px;
+      }
+    }
+  }
+
+
+  &_list {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    justify-content: space-between;
+    gap: 20px;
+
+    &_left {
+      flex-grow: 1;
+    }
+
+    &_right {
+      flex-basis: 260px;
+      flex-shrink: 0;
+    }
+  }
 }

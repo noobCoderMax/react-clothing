@@ -1,39 +1,41 @@
 import React, { useEffect, useState } from "react";
 import s from './index.module.less'
 import {DownOutlined,UpOutlined,RightOutlined} from '@ant-design/icons'
+import Input from "../Input";
 
 const CategorySearch: React.FC = () => {
   const [value, setValue] = useState<string>('')
+  const [conditionStyleHeight, setConditionStyleHeight] = useState<string>('200px')
   const [showCondition, setShowCondition] = useState<boolean>(false)
-
-  let conditionStyleHeight = "200px"
+  const [season,setseason] = useState(["春季","夏季","秋季","冬季","四季"])
 
   useEffect(() => {
     if (showCondition) {
-      conditionStyleHeight = '500px'
-    } else {
-      conditionStyleHeight = '200px'
+      setConditionStyleHeight('500px')
+    } else  {
+      setConditionStyleHeight('200px')
     }
-  },[setShowCondition])
+  },[showCondition])
   
   const handleShowCondition = (isShow: boolean) => {
     isShow ? setShowCondition(true) : setShowCondition(false)
   }
 
-  return <div className={s.category}>
-    <div className={s.category_top}>
-      <div className={s.category_top_input}>
-        <input type="text" value={value} onChange={(e) => setValue(e.target.value)} placeholder="请输入搜索内容"/>
-        <button>搜索</button>
-      </div>
-    </div>
-
+  const handleSeason = () => {
     
+  }
+
+  return <div className={s.category}>
     <div className={s.category_kind}>
       <div className={s.category_kind_condition}>
-        <div className={s.conditionList} style={{
-          height:conditionStyleHeight
-        }}>
+        <div
+          className={s.conditionList}
+          style={
+            {
+              height: conditionStyleHeight
+            }
+          }
+        >
           <div className={s.conditionList_top}>
             <span className={s.span}>所有分类<RightOutlined /></span>  
             {
@@ -48,9 +50,11 @@ const CategorySearch: React.FC = () => {
               }
           </div>
 
+          <div className={s.conditionList_content}>
+                <Input type="category" value={season} onChange={(e)=>handleSeason}/>
+          </div>
          </div>
       </div>
-      <div className={s.category_kind_recommend}>3</div>
    </div>
 
   </div>

@@ -3,7 +3,7 @@ import { Carousel} from 'antd';
 import Header from "../../components/Header";
 import Tabs, { Tab } from "../../components/Tabs";
 import s from "./index.module.less";
-import Card from "../../components/Card";
+import Card from "../../components/FlipCard";
 import Footer from "../../components/Footer";
 import Category from "../../components/Category";
 import MineCard from "../../components/MineCard";
@@ -36,23 +36,6 @@ const Home: React.FC = () => {
     },
   ];
 
-  const cards = [
-    {
-      id: 1,
-      front: 'https://p0.ssl.img.360kuai.com/t0177e14695e5ef1ba0.jpg',
-      back: 'http://picnew10.photophoto.cn/20160721/shishangfuzhuangmotemeinvtupian-27332504_1.jpg'
-    },
-    {
-      id: 2,
-      front: 'https://p0.ssl.img.360kuai.com/t0177e14695e5ef1ba0.jpg',
-      back: 'http://picnew10.photophoto.cn/20160721/shishangfuzhuangmotemeinvtupian-27332504_1.jpg'
-    },
-    {
-      id: 3,
-      front: 'https://p0.ssl.img.360kuai.com/t0177e14695e5ef1ba0.jpg',
-      back: 'http://picnew10.photophoto.cn/20160721/shishangfuzhuangmotemeinvtupian-27332504_1.jpg'
-    }
-  ]
   const [value, _setValue] = useState('')
 
   const setValue = (value: string) => {
@@ -103,15 +86,6 @@ const Home: React.FC = () => {
         <GoodList/>
         
         <Tabs tabs={tabs} />
-        <div className={s.cards}>
-        {
-            cards.map(item => {
-              return <div key={item.id} className={s.cards_item}>
-                <Card front={item.front} back={item.back} />
-              </div>
-            })
-        }
-        </div>
       </div>
       <Footer />
     </div>

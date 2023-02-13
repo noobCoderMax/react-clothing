@@ -15,5 +15,16 @@ declare module 'gridmanager-react' {
     age: number;
     phone: string;
   };
+
+  // 商品类型
+  export type GoodType = {
+    id: string,
+    imgSrc: string,
+    sales: number,
+    images: string[],
+    price: number,
+    tips: string[],
+    info:string
+  }
   
 }

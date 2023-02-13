@@ -2,50 +2,11 @@
   width: 100%;
   position: relative;
 
-  &_top {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin: 10px 0;
-
-    &_input {
-      border: 1px solid red;
-      height: 40px;
-
-      input {
-        text-indent: 1rem;
-        width: 500px;
-        border: none;
-        outline: none;
-        height: 38px;
-        line-height: 38px;
-        color: #ccc;
-        font-size: 14px;
-
-        &:focus {
-          color: #000;
-        }
-      }
-
-      button {
-        width: 80px;
-        height: 40px;
-        line-height: 38px;
-        text-align: center;
-        border: none;
-        outline: none;
-        background-color: red;
-        color: #fff;
-        font-weight: bolder;
-        font-size: 16px;
-      }
-    }
-  }
 
   &_kind {
-    margin-top: 30px;
     display: flex;
     flex-direction: row;
+    gap: 10px;
 
     &_condition {
       flex-grow: 1;
@@ -66,6 +27,7 @@
   width: 100%;
   border: 1px solid red;
   transition: all .4s ease;
+  overflow: hidden;
 
 
   &_top {
