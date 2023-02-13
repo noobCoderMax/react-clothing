@@ -26,18 +26,16 @@ const Ropular: React.FC<Props> = (props) => {
     })
   }
   
-
   return <div className={s.popular}>
     {
       goodList.map(item => {
         return <div className={s.popular_item} key={item.id}>
-          {/* <img src={item.imgSrc} alt={item.price.toString()} /> */}
           <div className={s.popular_item_img}>
             <Card front={item.images[0]} back={item.images[1]} />
           </div>
           <div className={s.popular_item_info} onClick={()=>{handleToDetail(item)}}>
             <div className={s.popular_item_info_price}>￥{item.price}</div>
-            <div className={s.popular_item_info_sales}>{item.sales}</div>
+            <div className={s.popular_item_info_sales}>销量:  {item.sales}</div>
           </div>
         </div>
       })

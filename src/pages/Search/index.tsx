@@ -1,5 +1,6 @@
 import { GoodType } from "gridmanager-react";
 import React, { useState } from "react";
+import CategoryList from "../../components/CategoryList";
 import CategorySearch from "../../components/CategorySearch";
 import Header from "../../components/Header";
 import PopularrRcommend from "../../components/PopularRecomme";
@@ -85,7 +86,8 @@ const Search: React.FC = () => {
 
       <div className={s.search_list}>
           <div className={s.search_list_left}>
-            <CategorySearch/>
+          <CategorySearch />
+          <CategoryList goodList={goodList}/>
           </div>
           <div className={s.search_list_right}>
             <PopularrRcommend goodList={goodList}/>

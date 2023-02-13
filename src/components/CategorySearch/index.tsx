@@ -3,8 +3,12 @@ import s from './index.module.less'
 import {DownOutlined,UpOutlined,RightOutlined} from '@ant-design/icons'
 import Input from "../Input";
 
-const CategorySearch: React.FC = () => {
-  const [value, setValue] = useState<string>('')
+type Props = {
+
+}
+
+const CategorySearch: React.FC<Props> = (props) => {
+  const {} = props
   const [conditionStyleHeight, setConditionStyleHeight] = useState<string>('200px')
   const [showCondition, setShowCondition] = useState<boolean>(false)
   const [season,setseason] = useState(["春季","夏季","秋季","冬季","四季"])

@@ -2,24 +2,8 @@
   width: 100%;
   position: relative;
 
-
   &_kind {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-
-    &_condition {
-      flex-grow: 1;
-      height: 900px;
-      background-color: aquamarine;
-    }
-
-    &_recommend {
-      flex-basis: 300px;
-      flex-shrink: 0;
-      height: 900px;
-      background-color: pink;
-    }
+    width: 100%;
   }
 }
 
@@ -29,12 +13,12 @@
   transition: all .4s ease;
   overflow: hidden;
 
-
   &_top {
     padding: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background-color: pink;
   }
 }
 
@@ -46,4 +30,9 @@
   text-align: center;
   background-color: #ccc;
   cursor: pointer;
+
+  &:nth-of-type(1) {
+    background-color: #fff;
+  }
+
 }
