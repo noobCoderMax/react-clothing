@@ -4,13 +4,12 @@ import { CloseCircleOutlined,SearchOutlined } from '@ant-design/icons'
 import NumberInput from "./NumberInput";
 import SizeInput from "./SizeInput";
 import AddressInput from "./AddressInput";
-import CategoryInput from "./CategoryInput";
 
 type Props = {
   value: string| string[],
   onChange: (value:string | number | string[]) => void,
   placeholder?: string ,
-  type: 'text' | 'number' | 'main' | 'search' | "size" | "address"|"category" ,
+  type: 'text' | 'number' | 'main' | 'search' | "size" | "address" ,
   onclick?:()=>void
 }
 const Input: React.FC<Props> = ({ placeholder, value, onChange, type,onclick }) => {
@@ -45,9 +44,6 @@ const Input: React.FC<Props> = ({ placeholder, value, onChange, type,onclick }) 
       case 'address':
           return <AddressInput getValue={(e)=>onChange(e)}/>
         break;
-      case 'category':
-          return <CategoryInput value={value as string[]} getValue={(e)=>onChange(e)}/>
-      break;
       default:
         return <input type="text" />
     }

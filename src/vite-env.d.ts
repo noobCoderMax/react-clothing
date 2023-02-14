@@ -1,5 +1,7 @@
 /// <reference types="vite/client" />
 
+import { type } from "os";
+
 declare module 'gridmanager-react' {
   export enum Gender {
     male = 0,
@@ -27,4 +29,9 @@ declare module 'gridmanager-react' {
     info:string
   }
   
+  // 条件筛选类型
+  export type CategoryType = {
+    label: string,
+    values:string[]
+  }
 }

@@ -1,0 +1,54 @@
+.CategoryInput {
+  width: 100%;
+  border-bottom: 1px dashed #ccc;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+
+  &_checkbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    flex-wrap: wrap;
+
+    &_form {
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+    }
+  }
+}
+
+.item {
+  cursor: pointer;
+  height: 30px;
+  line-height: 30px;
+  margin-right: 30px;
+
+  &:hover {
+    color: red;
+  }
+}
+
+.label {
+  width: 140px;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+}
+
+.more {
+  width: 60px;
+  cursor: pointer;
+  text-align: center;
+  margin: 5px 0;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  &:hover {
+    border: 1px solid red;
+  }
+}

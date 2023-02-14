@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import s from './index.module.less'
 import {DownOutlined,UpOutlined,RightOutlined} from '@ant-design/icons'
 import Input from "../Input";
+import CategoryInput from "../CategoryInput";
 
 type Props = {
 
@@ -12,6 +13,8 @@ const CategorySearch: React.FC<Props> = (props) => {
   const [conditionStyleHeight, setConditionStyleHeight] = useState<string>('200px')
   const [showCondition, setShowCondition] = useState<boolean>(false)
   const [season,setseason] = useState(["春季","夏季","秋季","冬季","四季"])
+  const [size,setSize] = useState(["xxs","xs","s","m","l","xl","2xl","xxxl","xxxxl","xxxxl"])
+  const [suitablePeople,setSuitablePeople] = useState(["青少年","青年","中年","老年"])
 
   useEffect(() => {
     if (showCondition) {
@@ -25,8 +28,16 @@ const CategorySearch: React.FC<Props> = (props) => {
     isShow ? setShowCondition(true) : setShowCondition(false)
   }
 
-  const handleSeason = () => {
-    
+  const handleSeason = (seasonValue:string|string[]) => {
+    console.log("seasonValue",seasonValue);
+  }
+
+  const handlePeople = (suitableValue:string|string[]) => {
+    console.log("suitableValue",suitableValue);
+  }
+
+  const handleSize= (sizeValue:string|string[]) => {
+    console.log("sizeValue",sizeValue);
   }
 
   return <div className={s.category}>
@@ -55,7 +66,9 @@ const CategorySearch: React.FC<Props> = (props) => {
           </div>
 
           <div className={s.conditionList_content}>
-                <Input type="category" value={season} onChange={(e)=>handleSeason}/>
+            <CategoryInput label="适用季节" value={season} getValue={(e)=>handleSeason(e)}/>
+            <CategoryInput label="适用对象" value={suitablePeople} getValue={(e)=>handlePeople(e)}/>
+            <CategoryInput label="选择尺寸" value={size} getValue={(e)=>handleSize(e)}/>
           </div>
          </div>
       </div>
