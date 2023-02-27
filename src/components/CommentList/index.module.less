@@ -1,0 +1,98 @@
+.list {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+
+  &_item {
+    margin-top: 6px;
+    height: 100px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+    &_reply {
+      width: 100%;
+    }
+
+    &_show{    
+      width: 99%;
+      margin: 5px 0;
+      padding: 5px;
+      display: flex;
+      justify-content : start;
+      flex-direction: row;
+      border-bottom: 1px solid #ccc;
+  
+      img {
+        border: 1px solid #ccc;
+        height: 79px;
+        width: 79px;
+        margin: 5px;
+        border-radius: 50%;
+      }
+  
+      &_info {
+        flex: 1;
+  
+        &_username{
+         
+          display: flex;
+          justify-content: start;
+          padding-bottom: 4px;
+          transition: all .5s ease;
+
+          span:nth-of-type(1){
+            cursor: pointer;
+            font-size: 20px;
+            height: 20px;
+            line-height: 20px;
+
+            &:hover {
+              color: red;
+            }
+          }
+
+          span:nth-of-type(2){
+            display: inline-block;
+            font-weight: normal;
+            margin-left: 10px;
+            color: #ccc;
+            height: 20px;
+            line-height: 20px;
+            font-size: 12px;
+          }
+        }
+  
+        &_content {
+          height: 60px;
+          font-size: 16px;
+          text-indent: 2em;
+          color: rgb(84, 83, 83);
+          margin-top: 10px;
+          display:block;
+          white-space:wrap; 
+          overflow:hidden; 
+          text-overflow:ellipsis;
+        }
+  
+      }
+    }
+
+  
+  }
+}
+
+.miniBtn {
+  cursor: pointer;
+  width: 60px;
+  height: 24px;
+  margin-left: 20px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+  border: none;
+  border-radius: 6px;
+}

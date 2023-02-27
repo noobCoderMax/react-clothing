@@ -1,13 +1,11 @@
-import React, {  useState } from "react";
-import { Carousel} from 'antd';
+import React, { useState } from "react";
+import { Carousel } from 'antd';
 import Header from "../../components/Header";
 import Tabs, { Tab } from "../../components/Tabs";
 import s from "./index.module.less";
-import Card from "../../components/FlipCard";
 import Footer from "../../components/Footer";
 import Category from "../../components/Category";
 import MineCard from "../../components/MineCard";
-import Tool from "../../components/Tool";
 import GoodList from "../../components/GoodList";;
 
 const contentStyle: React.CSSProperties = {
@@ -44,14 +42,14 @@ const Home: React.FC = () => {
   }
 
   const categoryList = [
-    ['女装','内衣','奢品'],
-    ['女鞋','男鞋','箱包'],
-    ['美妆','饰品','洗护'],
-    ['男装','运动','百货'],
-    ['手机','数码','企业礼品'],
-    ['家装','电器','车品'],
-    ['食品','生鲜','母婴'],
-    ['医药','保健','进口'],
+    ['女装', '内衣', '奢品'],
+    ['女鞋', '男鞋', '箱包'],
+    ['美妆', '饰品', '洗护'],
+    ['男装', '运动', '百货'],
+    ['手机', '数码', '企业礼品'],
+    ['家装', '电器', '车品'],
+    ['食品', '生鲜', '母婴'],
+    ['医药', '保健', '进口'],
   ]
 
   const onChange = (currentSlide: number) => {
@@ -60,31 +58,31 @@ const Home: React.FC = () => {
 
   return (
     <div className={s.index}>
-        <Header />
+      <Header />
       <div className={s.home}>
         <div className={s.home_top}>
           <div className={s.home_top_category}>
-             <Category categoryList={categoryList} />
+            <Category categoryList={categoryList} />
           </div>
           <div className={s.home_top_swipper}>
             <div className={s.home_top_swipper_title}>
-               轮播图标题
+              轮播图标题
             </div>
-              <Carousel afterChange={onChange} autoplay={true}>
-                <div>
-                  <h3 style={contentStyle}>1</h3>
-                </div>
-                <div>
-                  <h3 style={contentStyle}>2</h3>
-                </div>
-              </Carousel>
+            <Carousel afterChange={onChange} autoplay={true}>
+              <div>
+                <h3 style={contentStyle}>1</h3>
+              </div>
+              <div>
+                <h3 style={contentStyle}>2</h3>
+              </div>
+            </Carousel>
           </div>
           <div className={s.home_top_mine}>
-            <MineCard/>
+            <MineCard />
           </div>
         </div>
-        <GoodList/>
-        
+        <GoodList />
+
         <Tabs tabs={tabs} />
       </div>
       <Footer />

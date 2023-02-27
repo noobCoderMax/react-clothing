@@ -1,24 +1,22 @@
 .category {
   width: 100%;
   position: relative;
-
-  &_kind {
-    width: 100%;
-  }
 }
 
 .conditionList {
+  border: 1px solid #ccc;
+  border-bottom: none;
   width: 100%;
-  border: 1px solid red;
   transition: all .4s ease;
   overflow: hidden;
+  // overflow-y: scroll;
 
   &_top {
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: pink;
+    border-bottom: 1px solid rgb(171, 167, 167);
   }
 }
 
@@ -35,4 +33,36 @@
     background-color: #fff;
   }
 
+}
+
+.recommend {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+
+  &_label {
+    width: 140px;
+    text-align: center;
+    height: 100%;
+    line-height: 40px;
+  }
+
+  &_items {
+    span {
+      display: inline-block;
+      margin-right: 10px;
+      color: black;
+      cursor: pointer;
+
+      &:hover{
+        color: red;
+        text-decoration: underline;
+      }
+    }
+  }
 }

@@ -2,23 +2,27 @@ import React, { useRef, useState } from "react";
 import s from "./index.module.less";
 import wxImg from "../../assets/images/wx.png";
 import { useNavigate } from "react-router-dom";
+import { LoginForm, registerForm } from "golbal";
+import useAxio from "../../Hooks/useAxios";
 
 const Login: React.FC = () => {
-  const formRef = useRef(null);
-  const loginRef = useRef(null);
-  const registerRef = useRef(null);
+  const formRef = useRef<HTMLElement | null>(null);
+  const loginRef = useRef<HTMLElement | null>(null);
+  const registerRef = useRef<HTMLElement | null>(null);
   const navigate = useNavigate();
+  const { post } = useAxio
 
-  const [loginValue, setLoginValue] = useState({ email: "", password: "" });
-  const [registerValue, setRegisterValue] = useState({
+  const [loginValue, setLoginValue] = useState<LoginForm>({ email: "", password: "", svgCode: "" });
+  const [registerValue, setRegisterValue] = useState<registerForm>({
     email: "",
     password: "",
-    nickname: "",
-    code: "",
+    userName: "",
+    emailCode: "",
   });
 
   const toLoginApi = () => {
     console.log("loginValue", loginValue);
+    post("", loginValue)
     navigate("/index");
   };
 
@@ -30,14 +34,14 @@ const Login: React.FC = () => {
     console.log("sendEmailCodeApi");
   };
 
-  const toRegister = () => {
+  const toRegisterStyle = () => {
     console.log("toRegister");
     (formRef.current as any).style.transform = "rotateY(180deg)";
     (loginRef.current as any).style.display = "none";
     (registerRef.current as any).style.display = "flex";
   };
 
-  const toLogin = () => {
+  const toLoginStyle = () => {
     console.log("toLogin");
     (formRef.current as any).style.transform = "none";
     (registerRef.current as any).style.display = "none";
@@ -84,7 +88,7 @@ const Login: React.FC = () => {
                 />
                 <button onClick={toLoginApi}>登录</button>
                 <div className={s.container_form_control}>
-                  <span onClick={toRegister}>
+                  <span onClick={toRegisterStyle}>
                     没有帐号？<span>去注册</span>
                   </span>
                 </div>
@@ -94,7 +98,7 @@ const Login: React.FC = () => {
                 <input
                   type="text"
                   placeholder="用户名"
-                  value={registerValue.nickname}
+                  value={registerValue.userName}
                   onChange={e =>
                     setRegisterValue(pre => {
                       return {
@@ -135,7 +139,7 @@ const Login: React.FC = () => {
                     type="text"
                     maxLength={4}
                     placeholder="验证码"
-                    value={registerValue.code}
+                    value={registerValue.emailCode}
                     onChange={e =>
                       setRegisterValue(pre => {
                         return {
@@ -149,7 +153,7 @@ const Login: React.FC = () => {
                 </div>
                 <button onClick={toRegisterApi}>注册</button>
                 <div className={s.container_form_control}>
-                  <span onClick={toLogin}>
+                  <span onClick={toLoginStyle}>
                     已有帐号？<span>去登录</span>
                   </span>
                 </div>

@@ -8,120 +8,120 @@ import image from '../../assets/svgs/image.svg'
 import EmojiList from "../../components/EmojiList";
 
 const Chat: React.FC = () => {
-  const messageBox = useRef<HTMLDivElement|null>(null)
+  const messageBox = useRef<HTMLDivElement | null>(null)
   const [chatList, setChatList] = useState([
     {
       id: 1,
       avator: "http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg",
       nickname: "今天",
-      chatLastestTime:"2023-02-02"
+      chatLastestTime: "2023-02-02"
     },
     {
       id: 2,
       avator: "http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg",
       nickname: "明天",
-      chatLastestTime:"2023-02-02"
+      chatLastestTime: "2023-02-02"
     },
     {
       id: 3,
       avator: "http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg",
       nickname: "lastDay",
-      chatLastestTime:"2023-02-02"
+      chatLastestTime: "2023-02-02"
     },
     {
-      id:4,
+      id: 4,
       avator: "http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg",
       nickname: "小满",
-      chatLastestTime:"2023-02-02"
+      chatLastestTime: "2023-02-02"
     },
     {
       id: 5,
       avator: "http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg",
       nickname: "Day",
-      chatLastestTime:"2023-02-02"
+      chatLastestTime: "2023-02-02"
     },
     {
-      id:6,
+      id: 6,
       avator: "http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg",
       nickname: "宋小宝",
-      chatLastestTime:"2023-02-02"
+      chatLastestTime: "2023-02-02"
     },
     {
       id: 7,
       avator: "http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg",
       nickname: "宋祖儿",
-      chatLastestTime:"2023-02-02"
+      chatLastestTime: "2023-02-02"
     }
   ])
   const [searchInput, setInput] = useState<string>('')
   const [message, setMessage] = useState('')
-  const [shouEmojiList,setShowEmojiList] = useState<boolean>(false)
+  const [shouEmojiList, setShowEmojiList] = useState<boolean>(false)
   const [messageList, setMessageList] = useState([
     {
       id: 6,
       nickname: "张三",
       avator: "http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg",
       message: "how to use Animate.css",
-      createTime:"2023/02/03 20:03:20"
+      createTime: "2023/02/03 20:03:20"
     },
     {
       id: 1,
       nickname: "李四",
       avator: "http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg",
       message: "Animate.css is a library of ready-to-use, cross-browser animations for use in your web projects. Great for emphasis, home pages, sliders, and attention-guiding hints.",
-      createTime:"2023/02/03 20:03:20"
+      createTime: "2023/02/03 20:03:20"
     },
     {
       id: 1,
       nickname: "李四",
       avator: "http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg",
       message: "npm install animate.css --save",
-      createTime:"2023-02-03"
+      createTime: "2023-02-03"
     },
     {
       id: 1,
       nickname: "李四",
       avator: "http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg",
       message: " yarn add animate.css",
-      createTime:"2023-02-03"
+      createTime: "2023-02-03"
     }
     , {
       id: 1,
       nickname: "李四",
       avator: "http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg",
       message: "import 'animate.css';",
-      createTime:"2023-02-03"
+      createTime: "2023-02-03"
     },
     {
       id: 1,
       nickname: "李四",
       avator: "http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg",
       message: "After installing Animate.css, add the class animate__animated to an element, along with any of the animation names (don't forget the animate__ prefix!):",
-      createTime:"2023-02-03"
+      createTime: "2023-02-03"
     },
     {
       id: 6,
       nickname: "张三",
       avator: "http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg",
       message: "thank you",
-      createTime:"2023-02-03"
+      createTime: "2023-02-03"
     }
   ])
 
-  
+
 
 
 
   useEffect(() => {
     messageBox.current!.scrollTop = messageBox.current?.scrollHeight!
-  },[])
+  }, [])
 
   // 当前用户ID
   const userId = 6
 
   useEffect(() => {
-    console.log("input",searchInput);
-  },[searchInput])
+    console.log("input", searchInput);
+  }, [searchInput])
 
 
 
@@ -147,7 +147,7 @@ const Chat: React.FC = () => {
       return false;
     }
     reader.onload = (data) => {
-        console.log("base64",data.target?.result);
+      console.log("base64", data.target?.result);
     };
     reader.readAsDataURL(file);
   }
@@ -165,26 +165,26 @@ const Chat: React.FC = () => {
               onChange={(v) =>
                 typeof v === 'string' ? setInput(v) : setInput(v.toString())
               }
-              onclick={handleChatList} />  
+              onclick={handleChatList} />
           </div>
           <div className={s.chat_box_list_items}>
-          {
-            chatList.map(item => {
-              return <div className={s.chat_box_list_items_item} key={item.id}>
-                <img src={item.avator} alt={item.nickname} />
-                <div className={s.chat_box_list_items_item_content}>{item.nickname}</div>
-                <div className={s.chat_box_list_items_item_time}>{item.chatLastestTime}</div>
-              </div>
-            })
-          }
+            {
+              chatList.map(item => {
+                return <div className={s.chat_box_list_items_item} key={item.id}>
+                  <img src={item.avator} alt={item.nickname} />
+                  <div className={s.chat_box_list_items_item_content}>{item.nickname}</div>
+                  <div className={s.chat_box_list_items_item_time}>{item.chatLastestTime}</div>
+                </div>
+              })
+            }
           </div>
         </div>
         <div className={s.chat_box_message}>
           <div className={s.chat_box_message_show}>
-             <div className={s.chat_box_message_show_title}>小溪</div>
+            <div className={s.chat_box_message_show_title}>小溪</div>
             <div className={s.chat_box_message_show_content} ref={messageBox}>
               {
-                messageList.map((item,index) => {
+                messageList.map((item, index) => {
                   return <div key={index}>
                     {
                       item.id === userId ?
@@ -205,33 +205,33 @@ const Chat: React.FC = () => {
                     }
                   </div>
                 })
-              }   
+              }
             </div>
           </div>
 
           <div className={s.chat_box_message_input}>
             <div className={s.chat_box_message_input_top}>
-              <img src={smail} alt="选择表情" onClick={()=>setShowEmojiList(!shouEmojiList)}/>
+              <img src={smail} alt="选择表情" onClick={() => setShowEmojiList(!shouEmojiList)} />
               <img src={image} alt="选择图片" />
               <input type="file" onChange={e => sendImages(e)} />
               {
-                shouEmojiList && <EmojiList onClick={e=>setMessage(message+e)
-                }/>
+                shouEmojiList && <EmojiList onClick={e => setMessage(message + e)
+                } />
               }
-            </div>  
+            </div>
             <div className={s.chat_box_message_input_bottom}>
               <textarea
                 value={message}
                 rows={6}
                 placeholder="请输入聊天内容,按Enter发送,按Ctrl+Enter换行"
-                onChange={e=>setMessage(e.target.value)}
+                onChange={e => setMessage(e.target.value)}
               ></textarea>
-            <div className={s.chat_box_message_input_bottom_btns}>
+              <div className={s.chat_box_message_input_bottom_btns}>
                 <Button onClick={handleSendMessage}>发送</Button>
-                <Button onClick={()=>setMessage('')}>清空</Button>
+                <Button onClick={() => setMessage('')}>清空</Button>
               </div>
             </div>
-            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,27 +1,29 @@
-import { proxy } from "valtio";
-export enum Gender {
-  male = 0,
-  fomale = 1,
-  unknown = -1,
+import { UserInfo } from 'golbal';
+import { UserStore } from 'golbal'
+import { create } from 'zustand'
+import { getLocalStorageUserInfo, setLocalStorageUserInfo } from './storageFn';
+interface useLoading {
+  show: () => void,
+  hide:()=>void
+  // isShow: (value: boolean) => void,
 }
-export type UserStore = {
-  nickname: string;
-  email: string;
-  avator: string;
-  gender: Gender.fomale | Gender.male | Gender.unknown;
-  age: number;
-  phone: string;
-};
+interface useUserStore {
+  userInfo: UserInfo,
+  setUserInfo:(value:UserInfo)=>void
+}
 
-export const userStore = proxy<UserStore>({
-  nickname: "",
-  email: "",
-  avator: "",
-  gender: Gender.unknown,
-  age: 20,
-  phone: "",
-});
+const useLoadingStore = create<useLoading>((set) => ({
+  show() {},
+  hide() {},
+  // isShow:(value)=>set(()=>({show:value}))
+}))
 
-export const updateUserName = (name: string) => {
-  userStore.nickname = name;
-};
+const useUserStore = create<useUserStore>((set) => ({
+  userInfo: getLocalStorageUserInfo(),
+  setUserInfo: (value: UserInfo) => setLocalStorageUserInfo(value)
+}))
+
+export {
+  useLoadingStore,
+  useUserStore
+}
