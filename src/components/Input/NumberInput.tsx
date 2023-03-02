@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import s from './styles/numberInput.module.less'
 import decrease from '../../assets/svgs/decrease.svg'
 import increase from '../../assets/svgs/increase.svg'
@@ -10,29 +10,49 @@ type Props = {
 
 const NumberInput: React.FC<Props> = (props) => {
   const { getValue } = props
-  const [count, _setCount] = useState<number>(0)
+  const [count, _setCount] = useState<number>(1)
 
   const setCount = (value: number) => {
-    if (value < 0) return
+    if (value <= 0) return
     _setCount(value)
   }
 
   const handleCount = (increase: boolean) => {
     increase === true ? setCount(count + 1) : setCount(count - 1)
-    getValue(count)
   }
 
+  useEffect(() => {
+    getValue(count)
+  }, [count])
+
   return <div className={s.number}>
-    <button className={s.number_left} onClick={() => handleCount(false)} disabled={count < 1 ? true : false}>
+    <button
+      className={s.number_left}
+      onClick={() => handleCount(false)}
+      disabled={count < 1 ? true : false}
+    >
       {
-        count < 1 ?
-          <img src={ban} alt="禁止" style={{ filter: "#7b7d7e" }}></img>
+        count <= 1 ?
+          <img
+            src={ban}
+            alt="禁止"
+            style={{ filter: "#7b7d7e" }}
+          />
           :
-          <img src={decrease} alt="decrease"></img>
+          <img
+            src={decrease} alt="decrease"
+          />
       }
     </button>
-    <input placeholder="1" value={count} onChange={(e) => setCount(parseInt(e.target.value))} />
-    <button className={s.number_left} onClick={() => handleCount(true)}>
+    <input
+      placeholder="1"
+      value={count}
+      onChange={(e) => setCount(parseInt(e.target.value))}
+    />
+    <button
+      className={s.number_left}
+      onClick={() => handleCount(true)}
+    >
       <img src={increase} alt="decrease"></img>
     </button>
   </div>

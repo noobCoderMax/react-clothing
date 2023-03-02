@@ -1,29 +1,45 @@
-import { UserInfo } from 'golbal';
-import { UserStore } from 'golbal'
 import { create } from 'zustand'
-import { getLocalStorageUserInfo, setLocalStorageUserInfo } from './storageFn';
+import { UserInfo } from '../global';
+import {
+  getLocalStorageUserInfo,
+  setLocalStorageUserInfo,
+  getLocalStorageToken,
+  getLocalStorageBuyStore,
+  setLocalStorageBuyStore
+} from './storageFn';
 interface useLoading {
-  show: () => void,
-  hide:()=>void
-  // isShow: (value: boolean) => void,
+  loading: boolean,
+  setLoading:(value:boolean)=>void
 }
 interface useUserStore {
   userInfo: UserInfo,
-  setUserInfo:(value:UserInfo)=>void
+  setUserInfo: (value: UserInfo) => void,
+  getToken:()=>void
+}
+
+interface useBuyStore {
+  buyStore: () => void,
+  setBuyStore:(value:any)=>void
 }
 
 const useLoadingStore = create<useLoading>((set) => ({
-  show() {},
-  hide() {},
-  // isShow:(value)=>set(()=>({show:value}))
+  loading: false,
+  setLoading:(value:boolean)=>set(()=>({loading:value}))
 }))
 
 const useUserStore = create<useUserStore>((set) => ({
   userInfo: getLocalStorageUserInfo(),
-  setUserInfo: (value: UserInfo) => setLocalStorageUserInfo(value)
+  setUserInfo: (value: UserInfo) => setLocalStorageUserInfo(value),
+  getToken:()=>getLocalStorageToken()   
+}))
+
+const useBuyStore = create<useBuyStore>(() => ({
+  buyStore: getLocalStorageBuyStore,
+  setBuyStore: (value: any) => setLocalStorageBuyStore(value),
 }))
 
 export {
   useLoadingStore,
-  useUserStore
+  useUserStore,
+  useBuyStore
 }

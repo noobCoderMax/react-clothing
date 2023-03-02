@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Carousel } from 'antd';
 import Header from "../../components/Header";
 import Tabs, { Tab } from "../../components/Tabs";

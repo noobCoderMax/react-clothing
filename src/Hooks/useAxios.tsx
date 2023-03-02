@@ -1,23 +1,33 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
-import { useEffect, useState } from "react"
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, RawAxiosRequestConfig } from "axios";
 import { useNavigate } from "react-router-dom";
 import { useLoadingStore } from '../store/index'
+const request = axios.create({
+  baseURL: "http://localhost:5555",
+  timeout: 10000
+})
 
-axios.defaults.baseURL = "http://localhost:5555",
-  axios.defaults.timeout = 5000
-
-axios.interceptors.request.use((config: AxiosRequestConfig) => {
-  console.log("axios Config", config);
+request.interceptors.request.use((config: AxiosRequestConfig) => {
   return config
 })
 
-axios.interceptors.response.use(undefined, (error: AxiosError) => {
+request.interceptors.response.use((response) => {
+  return response.data
+}, (error: AxiosError) => {
 
 })
 
+type Options = {
+  showLoading?: boolean,
+  handleError?: boolean
+}
 
-const useAxio = () => {
+
+const useAxio = (option?: Options) => {
   const nav = useNavigate()
+  const { setLoading } = useLoadingStore()
+  const showLoading = option?.showLoading || false
+  const handleError = option?.handleError || false
+
   const table: Record<string, undefined | (() => void)> = {
     401: () => {
       alert("请登录后访问")
@@ -42,23 +52,30 @@ const useAxio = () => {
     }
   }
 
-  return {
-    get: (path: string, config?: AxiosRequestConfig) => {
-      return axios.get(path, config).catch(onError)
+  const ajax = {
+    get: (path: string, config?: RawAxiosRequestConfig) => {
+      return request.get(path, config).catch(onError)
     },
-    post: (path: string, data?: any, config?: AxiosRequestConfig) => {
-      return axios.post(path, data, config).catch(onError)
+    post: (path: string, data?: any, config?: RawAxiosRequestConfig) => {
+      if (showLoading) setLoading(true)
+      return request.post(path, data, config)
+        .finally(() => {
+          if (showLoading)
+            setLoading(false)
+        })
     },
-    put: (path: string, data?: any, config?: AxiosRequestConfig) => {
-      return axios.put(path, data, config).catch(onError)
+    put: (path: string, data?: any, config?: RawAxiosRequestConfig) => {
+      return request.put(path, data, config).catch(onError)
     },
-    petch: (path: string, data?: any, config?: AxiosRequestConfig) => {
-      return axios.patch(path, data, config).catch(onError)
+    petch: (path: string, data?: any, config?: RawAxiosRequestConfig) => {
+      return request.patch(path, data, config).catch(onError)
     },
-    delete: (path: string, config?: AxiosRequestConfig) => {
-      return axios.delete(path, config).catch(onError)
+    delete: (path: string, config?: RawAxiosRequestConfig) => {
+      return request.delete(path, config).catch(onError)
     }
   }
+
+  return ajax
 }
 
 

@@ -8,7 +8,9 @@ import { StarOutlined } from '@ant-design/icons'
 import Input from "../../components/Input";
 import CommentInput from "../../components/CommentInput";
 import CommentList from "../../components/CommentList";
-import { useUserStore } from "../../store";
+import { useUserStore, useBuyStore } from "../../store";
+import { BuyItemType } from "../../global";
+
 
 const starStyle: React.CSSProperties = {
   color: '#ff8f1c',
@@ -46,10 +48,17 @@ const tempCommentList: Comment[] = [
   }
 ]
 const Detail: React.FC = () => {
-  const userInfo = useUserStore(state => state.userInfo)
-  console.log("userInfo", userInfo);
-
   const { state } = useLocation()
+  const userInfo = useUserStore(state => state.userInfo)
+  const setBuyStore = useBuyStore(state => state.setBuyStore)
+  const [buyItem, setBuyItem] = useState<BuyItemType>(
+    {
+      id: state.id,
+      size: "",
+      count: 0,
+      address: ""
+    })
+
   const [count, setCount] = useState<number>(0)
   const [size, setSize] = useState<string>("")
   const [address, setAddress] = useState<string>("")
@@ -59,24 +68,43 @@ const Detail: React.FC = () => {
   }
 
   useEffect(() => {
-    console.log("count", count);
-    console.log("size", size);
-    console.log("address", address);
-  }, [count, size, address])
+    // console.log("count", count);
+    // console.log("size", size);
+    // console.log("address", address);
+  }, [])
 
   const handleGoodCount = (count: string | number) => {
-    setCount(count = typeof count === "number" ? count : parseInt(count))
+    const countValue = typeof count === "number" ? count : parseInt(count)
+    setBuyItem((pre: BuyItemType) => {
+      return {
+        ...pre,
+        count: countValue
+      }
+    })
   }
 
   const handleGoodSize = (size: string | number) => {
-    setSize(size = typeof size === "string" ? size : size.toString())
+    const sizeValue = typeof size === "string" ? size : size.toString()
+    setBuyItem((pre: BuyItemType) => {
+      return {
+        ...pre,
+        size: sizeValue
+      }
+    })
   }
 
   const handleGoodAddress = (address: string | number) => {
-    setAddress(address = typeof address === "string" ? address : address.toString())
+    const addressValue = typeof address === "string" ? address : address.toString()
+    setBuyItem((pre: BuyItemType) => {
+      return {
+        ...pre,
+        address: addressValue
+      }
+    })
   }
 
   const handleToCart = () => {
+    console.log("buyItem", buyItem);
     console.log("加入购物车");
   }
 
@@ -94,6 +122,7 @@ const Detail: React.FC = () => {
     let id = state.id
     console.log("处理用户评论-Detail", reply);
   }
+
 
   return <div>
     <Header />
@@ -121,27 +150,27 @@ const Detail: React.FC = () => {
 
           <div className={s.detail_content_address}>
             <div className={s.label}>地址   :</div>
-            <Input type="address" value={address} onChange={(e) => handleGoodAddress(e)} />
+            <Input type="address" value={buyItem.address} onChange={(e) => handleGoodAddress(e)} />
           </div>
 
 
           <div className={s.detail_content_size}>
             <div className={s.label}>尺码   :</div>
-            <Input type="size" value={size} onChange={(e) => handleGoodSize(e)} />
+            <Input type="size" value={buyItem.size} onChange={(e) => handleGoodSize(e)} />
           </div>
 
           <div className={s.detail_content_count}>
             <div className={s.label}>数量   :</div>
-            <Input type="number" value={count.toString()} onChange={(e) => handleGoodCount(e)} />
+            <Input type="number" value={buyItem.count.toString()} onChange={(e) => handleGoodCount(e)} />
           </div>
 
           <div className={s.detail_content_btns}>
-            <button onClick={() => handleBuy}>立刻购买</button>
-            <button onClick={() => handleToCart}>加入购物车</button>
+            <button onClick={handleBuy}>立刻购买</button>
+            <button onClick={handleToCart}>加入购物车</button>
           </div>
         </div>
       </div>
-      <div style={{ marginTop: '20px' }}>
+      <div className={s.commentContent}>
         <CommentInput
           placeHolder="请输入评论，请勿输入违法违规或不文明的内容"
           chooseImage={false}

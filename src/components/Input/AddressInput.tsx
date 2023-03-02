@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Cascader, Input } from 'antd';
 import s from './styles/AddressInput.module.less'
-import {formatAddress} from '../../utils/formatAddress'
+import { formatAddress } from '../../utils/formatAddress'
 
 type Props = {
-  getValue:(value:string)=>void
+  getValue: (value: string) => void
 }
 
 const address = [
@@ -5549,12 +5549,12 @@ const address = [
 ]
 
 interface Option {
-  value: string ;
+  value: string;
   label: string;
   children?: Option[];
 }
 
-const options:Option[] = formatAddress(address)
+const options: Option[] = formatAddress(address)
 
 const AddressInput: React.FC<Props> = (props) => {
   const { getValue } = props
@@ -5565,8 +5565,10 @@ const AddressInput: React.FC<Props> = (props) => {
     setValue(value.join(''))
   };
 
-  getValue(value+detailAddress)
-  
+  useEffect(() => {
+    getValue(value + detailAddress)
+  }, [value, detailAddress])
+
   return <div className={s.address}>
     <Cascader
       style={{ width: "200px" }}
@@ -5575,7 +5577,7 @@ const AddressInput: React.FC<Props> = (props) => {
       onChange={onChange}
     />
     <div className={s.address_text}>详细地址:</div>
-    <Input style={{width:'180px'}} value={detailAddress} onChange={(e)=>setDetailAddress(e.target.value)}/>
-</div>
+    <Input style={{ width: '180px' }} value={detailAddress} onChange={(e) => setDetailAddress(e.target.value)} />
+  </div>
 }
 export default AddressInput;

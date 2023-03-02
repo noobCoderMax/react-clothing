@@ -23,7 +23,6 @@ const CategorySearch: React.FC<Props> = (props) => {
     for (const entry of entries) {
       if (entry.contentBoxSize) {
         const contentBoxSize = Array.isArray(entry.contentBoxSize) ? entry.contentBoxSize[0] : entry.contentBoxSize;
-        console.log('Size changed', contentBoxSize.blockSize);
         setConditionStyleHeight(Math.ceil(contentBoxSize.blockSize) + 50)
       }
     }
@@ -36,15 +35,12 @@ const CategorySearch: React.FC<Props> = (props) => {
       resizeRef.current?.addEventListener("change", () => {
         resizeObserver.observe(resizeRef.current!);
       })
-
     } else {
       setConditionStyleHeight(50)
     }
-
     return () => {
-      resizeObserver.unobserve(resizeRef.current!)
+      resizeObserver.disconnect()
     };
-
   }, [showCondition])
 
   const handleShowCondition = (isShow: boolean) => {

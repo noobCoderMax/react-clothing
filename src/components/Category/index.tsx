@@ -1,14 +1,12 @@
 import React from "react";
 import s from './index.module.less'
 type Props = {
-  categoryList:string[][]
+  categoryList: string[][]
 }
 
-const Category: React.FC<Props> = ({categoryList}) => {
-
-
+const Category: React.FC<Props> = ({ categoryList }) => {
   const getValue = (value: string) => {
-    console.log("value",value);
+    console.log("value", value);
   }
 
   return <div className={s.category}>
@@ -16,18 +14,20 @@ const Category: React.FC<Props> = ({categoryList}) => {
     <div>
       <ul>
         {
-          categoryList.map((item,index) => {
+          categoryList.map((item, index) => {
             return <li key={index}>
               {
-                item.map((i,index) => {
-                  return <span key={i} onClick={e=>getValue(i)}>{i}
-                  {index-2 ? <i style={{marginRight:4+'px',marginLeft:10+'px'}}>/</i>:null}
+                item.map((i, index) => {
+                  return <span
+                    key={i}
+                    onClick={e => getValue(i)}>{i}
+                    {index - 2 ? <i className={s.txt}>/</i> : null}
                   </span>
                 })
               }
             </li>
           })
-       }
+        }
       </ul>
     </div>
   </div>

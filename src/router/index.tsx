@@ -19,7 +19,7 @@ const routes: RouteObject[] = [
   },
   {
     path: "/login",
-    element: withLoadingComponent(<Login />),
+    element: <Login />,
   },
   {
     path: "/index",
@@ -27,22 +27,23 @@ const routes: RouteObject[] = [
   },
   {
     path: "/mine",
-    element:withLoadingComponent(<Mine/>)
-  }, {
+    element: withLoadingComponent(<Mine />)
+  },
+  {
     path: '/checkout',
-    element:withLoadingComponent(<Checkout/>)
+    element: withLoadingComponent(<Checkout />)
   },
   {
     path: "/chat",
-    element:withLoadingComponent(<Chat/>)
+    element: withLoadingComponent(<Chat />)
   },
   {
     path: 'detail',
-    element:withLoadingComponent(<Detail/>)
+    element: withLoadingComponent(<Detail />)
   },
   {
     path: '/search',
-    element:withLoadingComponent(<Search/>)
+    element: withLoadingComponent(<Search />)
   }
 ];
 
