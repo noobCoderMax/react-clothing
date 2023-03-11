@@ -4,7 +4,7 @@ type Params = {
   handleMessage:(message:string)=>void
 }
 
-const useWebSocket =(handleMessage: (this: WebSocket, ev: Event) => any)=>{
+const useWebSocket =()=>{
   const ws = new WebSocket(WS_PORT)
 
   const init = () => {
@@ -16,6 +16,10 @@ const useWebSocket =(handleMessage: (this: WebSocket, ev: Event) => any)=>{
     ws.addEventListener('close',handleClose,false)
     ws.addEventListener('error',handleError,false)
     ws.addEventListener('message',handleMessage,false)
+  }
+
+  const handleMessage = (ws: WebSocket, ev: MessageEvent<any>):void => {
+    
   }
 
   const handleOpen = () => {
@@ -31,6 +35,10 @@ const useWebSocket =(handleMessage: (this: WebSocket, ev: Event) => any)=>{
   }
 
   init()
+
+  return {
+    handleMessage
+  }
 }
 
 export default  useWebSocket

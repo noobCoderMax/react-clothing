@@ -1,0 +1,42 @@
+.feedback{
+  margin: 40px 160px;
+  box-shadow: @box-s;
+  border-radius: 10px;
+
+
+  &_layout {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: #eaeae5;
+    gap: 20px;
+    border-radius: 10px;
+
+    &_l{
+      flex:1;
+      padding: 10px 0;
+    }
+
+    &_r {
+      flex: 1;
+      background-image: url('../../assets/images/feedbackBg.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      border-radius: 10px;
+    }
+  }
+}
+
+.submit {
+  display: flex;
+  flex-direction: row;
+  margin-right: 30px;
+  justify-content: end;
+}
+
+.feedback_form {
+  max-width: 600px;
+  padding: 20px 0;
+  border-radius: 10px;
+  height: 540px;
+}

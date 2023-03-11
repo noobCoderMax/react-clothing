@@ -5,7 +5,9 @@ import {
   setLocalStorageUserInfo,
   getLocalStorageToken,
   getLocalStorageBuyStore,
-  setLocalStorageBuyStore
+  setLocalStorageBuyStore,
+  getLocalMood,
+  setLocalMood
 } from './storageFn';
 interface useLoading {
   loading: boolean,
@@ -22,12 +24,17 @@ interface useBuyStore {
   setBuyStore:(value:any)=>void
 }
 
+interface useMoodStore {
+  moodLocal: ()=>void,
+  setMoodLocal:(value:string)=>void
+}
+
 const useLoadingStore = create<useLoading>((set) => ({
   loading: false,
   setLoading:(value:boolean)=>set(()=>({loading:value}))
 }))
 
-const useUserStore = create<useUserStore>((set) => ({
+const useUserStore = create<useUserStore>(() => ({
   userInfo: getLocalStorageUserInfo(),
   setUserInfo: (value: UserInfo) => setLocalStorageUserInfo(value),
   getToken:()=>getLocalStorageToken()   
@@ -38,8 +45,14 @@ const useBuyStore = create<useBuyStore>(() => ({
   setBuyStore: (value: any) => setLocalStorageBuyStore(value),
 }))
 
+const useMoodStyleStore = create<useMoodStore>(() => ({
+  moodLocal: getLocalMood,
+  setMoodLocal:(value:string)=>setLocalMood(value)
+}))
+
 export {
   useLoadingStore,
   useUserStore,
-  useBuyStore
+  useBuyStore,
+  useMoodStyleStore
 }

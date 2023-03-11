@@ -35,7 +35,7 @@ const CategoryList: React.FC<Props> = (props) => {
           </div>
           <div className={s.content_item_info} onClick={() => { handleToDetail(item) }}>
             <div className={s.content_item_info_price}>￥{item.price}</div>
-            <div className={s.content_item_info_sales}>{item.sales}</div>
+            <div className={s.content_item_info_sales}>销量: {item.sales}</div>
           </div>
         </div>
       })

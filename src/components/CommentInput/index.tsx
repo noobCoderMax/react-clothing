@@ -49,8 +49,11 @@ const CommentInput: React.FC<Props> = (props) => {
         </>
       }
       {
-        shouEmojiList && <EmojiList onClick={e => setMessage(message + e)
-        } />
+        shouEmojiList &&
+        <EmojiList
+          onClick={e => setMessage(message + e)}
+          handleShowEmojiList={value => setShowEmojiList(value)}
+        />
       }
     </div>
     <div className={s.comment_bottom}>

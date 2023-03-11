@@ -37,7 +37,6 @@
         flex: 1;
   
         &_username{
-         
           display: flex;
           justify-content: start;
           padding-bottom: 4px;
@@ -76,11 +75,8 @@
           overflow:hidden; 
           text-overflow:ellipsis;
         }
-  
       }
     }
-
-  
   }
 }
 
@@ -94,4 +90,10 @@
   font-size: 12px;
   border: none;
   border-radius: 6px;
+  transition: all .4s ease-in-out;
+
+  &:hover {
+    background-color: rgb(71, 196, 237);
+    color: white;
+  }
 }

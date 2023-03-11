@@ -2,7 +2,8 @@ import React, { useRef, useState } from "react";
 import s from "./index.module.less";
 import wxImg from "../../assets/images/wx.png";
 import { useNavigate } from "react-router-dom";
-import { ajaxRespones, LoginForm, registerForm } from "../../global";
+import { message } from 'antd';
+import { LoginForm, registerForm } from "../../global";
 import useAxio from "../../Hooks/useAxios";
 import { useUserStore } from "../../store";
 
@@ -11,6 +12,7 @@ const Login: React.FC = () => {
   const loginRef = useRef(null);
   const registerRef = useRef(null);
   const navigate = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage()
   const { setUserInfo, getToken } = useUserStore()
   const { post: postLoginValue } = useAxio({ showLoading: true, handleError: false })
 
@@ -41,7 +43,7 @@ const Login: React.FC = () => {
       token: "232323eewqeq"
     })
     navigate("/index")
-
+    messageApi.success("登录成功!")
   };
   const toRegisterApi = () => {
     console.log("registerValue", registerValue);
@@ -67,6 +69,7 @@ const Login: React.FC = () => {
 
   return (
     <div className={s.login}>
+      {contextHolder}
       <div className={s.mask}>
         <div className={s.form}>
           <div className={s.container}>

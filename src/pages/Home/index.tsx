@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Carousel } from 'antd';
 import Header from "../../components/Header";
-import Tabs, { Tab } from "../../components/Tabs";
 import s from "./index.module.less";
 import Footer from "../../components/Footer";
 import Category from "../../components/Category";
 import MineCard from "../../components/MineCard";
-import GoodList from "../../components/GoodList";;
+import GoodList from "../../components/GoodList";
 
 const contentStyle: React.CSSProperties = {
   margin: 0,
@@ -15,32 +14,32 @@ const contentStyle: React.CSSProperties = {
   lineHeight: '160px',
   textAlign: 'center',
   background: '#364d79',
-  borderRadius: '10px',
 };
 
 const Home: React.FC = () => {
-  const tabs: Tab[] = [
+  const [index, setIndex] = useState<number>(0)
+  const swipperItem = [
     {
-      title: "游戏",
-      element: <div>游戏</div>,
+      id: 1,
+      imgSrc: "http://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20181105/fbb757cf0e62490baf8efe27b7542d3e.jpeg",
+      label: "学院风"
     },
     {
-      title: "电影",
-      element: <div>电影</div>,
+      id: 2,
+      imgSrc: "http://www.cfw.cn/editors/attached/image/20160419/20160419094785198519.jpg",
+      label: "休闲风格"
     },
     {
-      title: "小说",
-      element: <div>小说</div>,
+      id: 3,
+      imgSrc: "https://icweiliimg1.pstatp.com/weili/bl/262223172430201002.jpg",
+      label: "朋克风格"
     },
-  ];
-
-  const [value, _setValue] = useState('')
-
-  const setValue = (value: string) => {
-    console.log(value);
-    _setValue(value)
-  }
-
+    {
+      id: 4,
+      imgSrc: "http://img1.gtimg.com/fashion/pics/hv1/227/211/1709/111181757.jpg",
+      label: "民族风"
+    }
+  ]
   const categoryList = [
     ['女装', '内衣', '奢品'],
     ['女鞋', '男鞋', '箱包'],
@@ -52,8 +51,8 @@ const Home: React.FC = () => {
     ['医药', '保健', '进口'],
   ]
 
-  const onChange = (currentSlide: number) => {
-    // console.log(currentSlide);
+  const onChange = (currentIndex: number) => {
+    setIndex(currentIndex)
   };
 
   return (
@@ -66,15 +65,16 @@ const Home: React.FC = () => {
           </div>
           <div className={s.home_top_swipper}>
             <div className={s.home_top_swipper_title}>
-              轮播图标题
+              {swipperItem[index].label}
             </div>
             <Carousel afterChange={onChange} autoplay={true}>
-              <div>
-                <h3 style={contentStyle}>1</h3>
-              </div>
-              <div>
-                <h3 style={contentStyle}>2</h3>
-              </div>
+              {
+                swipperItem.map(item => {
+                  return <div key={item.id}>
+                    <img style={contentStyle} src={item.imgSrc} alt={item.label} />
+                  </div>
+                })
+              }
             </Carousel>
           </div>
           <div className={s.home_top_mine}>
@@ -82,8 +82,6 @@ const Home: React.FC = () => {
           </div>
         </div>
         <GoodList />
-
-        <Tabs tabs={tabs} />
       </div>
       <Footer />
     </div>

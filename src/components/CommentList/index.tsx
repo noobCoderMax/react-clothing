@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Comment } from 'golbal'
+import { Comment } from '../../global'
 import CommentInput from "../CommentInput";
 import s from './index.module.less'
 

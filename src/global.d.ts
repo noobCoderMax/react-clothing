@@ -33,14 +33,7 @@ declare module 'golbal' {
     values:string[]
   }
 
-  // 评论类型
-  export type Comment = {
-    id: number,
-    userName: string,
-    avator: string,
-    content: string,
-    createTime: string
-  }
+
 
 
 }
@@ -109,3 +102,12 @@ export type GoodType = {
   tips: string[],
   info:string
 } 
+
+// 评论类型
+export type Comment = {
+  id: number,
+  userName: string,
+  avator: string,
+  content: string,
+  createTime: string
+}

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import s from './index.module.less'
 import { MessageOutlined, PhoneOutlined, FormOutlined, CloudOutlined, ArrowUpOutlined } from '@ant-design/icons'
-import { Button, Modal } from 'antd';
+import { Modal } from 'antd';
 import classNames from 'classnames'
 import WeatherCard from '../WeatherCard'
+import { useNavigate } from 'react-router-dom';
 const iconStyle: React.CSSProperties = {
   fontSize: '26px',
   textAlign: 'center',
@@ -13,7 +14,7 @@ const iconStyle: React.CSSProperties = {
 
 const WeatherCardStyle: React.CSSProperties = {
   height: "260px",
-  width: "420px",
+  width: "480px",
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -21,6 +22,7 @@ const WeatherCardStyle: React.CSSProperties = {
 }
 
 const Tool: React.FC = () => {
+  const nav = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [scroolTop, setScroolTop] = useState<number>(0)
 
@@ -55,15 +57,15 @@ const Tool: React.FC = () => {
   }
 
   const message = () => {
-    alert('customer')
+    nav('/chat')
   }
 
   const customer = () => {
-    alert('customer')
+    nav('/customer')
   }
 
   const feedback = () => {
-    alert('feedback')
+    nav('/feedback')
   }
 
 
@@ -73,9 +75,9 @@ const Tool: React.FC = () => {
   >
     <div className={s.tool} >
       <div className={s.tool_item} onClick={() => message()}><MessageOutlined style={iconStyle} /><span>消息</span></div>
-      <div className={s.tool_item} onClick={() => customer()}><PhoneOutlined style={iconStyle} /><span>官方客服</span> </div>
+      <div className={s.tool_item} onClick={() => customer()}><PhoneOutlined style={iconStyle} /><span>客服</span> </div>
       <div className={s.tool_item} onClick={() => feedback()}><FormOutlined style={iconStyle} /><span>反馈</span></div>
-      <div className={s.tool_item} onClick={() => weather()}><CloudOutlined style={iconStyle} /><span>天气卡片</span></div>
+      <div className={s.tool_item} onClick={() => weather()}><CloudOutlined style={iconStyle} /><span>天气</span></div>
       <div className={s.tool_item} onClick={() => smoothTop()}><ArrowUpOutlined style={iconStyle} /><span>回到顶部</span></div>
     </div >
     <Modal

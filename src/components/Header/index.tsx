@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../../store";
-import { Button, Modal } from 'antd';
+import { Modal } from 'antd';
 import s from "./index.module.less";
 type routeLink = {
   id: number;
@@ -47,8 +47,6 @@ const Header: React.FC = () => {
   const navigate = useNavigate()
   const useInfo = useUserStore(state => state.userInfo)
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  console.log("userInfo-useUserStore", useInfo);
 
   const linkTo = (router: string) => {
     navigate(router)
