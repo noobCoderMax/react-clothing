@@ -49,16 +49,11 @@ const Feedback: FC = () => {
     if (!checkFeedBack(feedBackForm)) {
       return
     }
-    console.log("feedBack", feedBackForm);
+    console.log("feedBackPage", feedBackForm);
   }
 
   const clearFeedback = () => {
-    feedBackForm.content = ""
-    feedBackForm.name = ""
-    feedBackForm.phone = ""
-    feedBackForm.time = ""
-    feedBackForm.type = "系统问题"
-    feedBackForm.gender = Gender.unknown
+    setFeedBackForm({ name: "", content: "", gender: Gender.unknown, phone: "", type: "系统问题", time: "" })
   }
 
   const checkFeedBack = (feedBack: FeebBacKFormType): boolean => {
@@ -143,7 +138,7 @@ const Feedback: FC = () => {
               </Radio.Group>
             </Form.Item>
             <Form.Item label="反馈类型">
-              <Select onChange={value => setFeedBackForm(pre => ({ ...pre, type: value }))}>
+              <Select value={feedBackForm.type} onChange={value => setFeedBackForm(pre => ({ ...pre, type: value }))}>
                 <Select.Option value="系统问题">系统问题</Select.Option>
                 <Select.Option value="商家问题">商家问题</Select.Option>
                 <Select.Option value="服装问题">服装问题</Select.Option>
@@ -172,8 +167,8 @@ const Feedback: FC = () => {
               />
             </Form.Item>
             <div className={s.submit}>
-              <Button style={{ width: '100px', marginRight: '10px' }} onClick={clearFeedback}>清空</Button>
-              <Button style={{ width: '100px' }} type='primary' onClick={submitFeedback}>提交</Button>
+              <Button type='default' className={s.submit_btn} onClick={clearFeedback}>清空</Button>
+              <Button type='primary' className={s.submit_btn} onClick={submitFeedback}>提交</Button>
             </div>
           </Form>
         </div>

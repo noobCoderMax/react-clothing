@@ -6,6 +6,7 @@ import { message } from 'antd';
 import { LoginForm, registerForm } from "../../global";
 import useAxio from "../../Hooks/useAxios";
 import { useUserStore } from "../../store";
+import classNames from "classnames";
 
 const Login: React.FC = () => {
   const formRef = useRef(null);
@@ -73,7 +74,7 @@ const Login: React.FC = () => {
       <div className={s.mask}>
         <div className={s.form}>
           <div className={s.container}>
-            <div className={s.container_description}>
+            <div className={classNames([s.container_description, s.book])}>
               <img src={wxImg} alt="wx" />
               <span>更多咨询可扫码了解~</span>
             </div>
@@ -197,8 +198,8 @@ const Login: React.FC = () => {
               </form>
             </div>
             <div className={s.container_description}>
-              <img src={wxImg} alt="wx" />
-              <span>更多咨询可扫码了解~</span>
+              <img src="http://test.kuugacoder.top/logo.png" alt="wx" />
+              <span style={{ fontSize: '30px' }}>服装推荐</span>
             </div>
           </div>
         </div>

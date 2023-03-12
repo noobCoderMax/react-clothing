@@ -32,28 +32,17 @@ declare module 'golbal' {
     label: string,
     values:string[]
   }
-
-
-
-
 }
 export interface UserInfo {
   nickname: string;
   email: string;
   avator: string;
   gender: Gender.fomale | Gender.male | Gender.unknown;
-  age: number;
-  phone: string;
-  token?:string
-}
-
-export interface UserInfo {
-  nickname: string;
-  email: string;
-  avator: string;
-  gender: Gender.fomale | Gender.male | Gender.unknown;
-  age: number;
-  phone: string;
+  birth: string,
+  sign: string,
+  tips?: string[],
+  age?: number;
+  phone?: string;
   token?:string
 }
 
@@ -109,5 +98,18 @@ export type Comment = {
   userName: string,
   avator: string,
   content: string,
+  createTime: string
+}
+
+export enum Gender {
+  male = 0,
+  fomale = 1,
+  unknown = -1,
+}
+
+export interface History {
+  id: string,
+  img: string,
+  title: string
   createTime: string
 }

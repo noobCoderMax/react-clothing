@@ -75,7 +75,9 @@ const Header: React.FC = () => {
   s.header_router
   return <div className={s.position}>
     <div className={s.header}>
-      <div className={s.header_icon}>icon</div>
+      <div className={s.header_icon}>
+        <img src="http://test.kuugacoder.top/logo.png" alt="logo" title="服装推荐" />
+      </div>
       {
         routeItems.map(item => {
           return <div className={s.header_router} key={item.id} onClick={() => linkTo(item.link)}>{item.name}</div>

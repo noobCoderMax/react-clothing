@@ -7,19 +7,21 @@
   box-shadow: @box-s;
 
   &_info {
+    padding-left: 20px;
     position: relative;
     display: flex;
     flex-direction: row;
     height: 160px;
     padding-bottom: 16px;
-    border-bottom: 1px solid #ccc;
+    border-radius: 10px;
+    border: 1px solid #ccc;
 
     &::after {
       position: absolute;
       content: '点击更改头像';
       bottom: 4px;
-      left: 30px;
-      font-size: 14px;
+      left: 50px;
+      font-size: 12px;
       width: 100px;
       height: 20px;
       text-align: center;
@@ -109,7 +111,7 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         margin: 6px 0;
-        border-bottom: 1px solid #ccc;
+        // border-bottom: 1px solid #ccc;
       }
     }
 
