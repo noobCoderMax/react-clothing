@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './styles/Commodity.module.less'
 import { Button, Modal, Space, Table, Tag } from 'antd';
 import Input from '../../components/Input';
@@ -21,7 +21,7 @@ const App: React.FC = () => {
     {
       id: "1",
       desc: '连衣裙',
-      tags: ['nice', 'developer'],
+      tags: ['大气', '端庄'],
       choose: false,
       univalent: 188,
       sum: 188,
@@ -31,7 +31,7 @@ const App: React.FC = () => {
     {
       id: "2",
       desc: '牛仔裤',
-      tags: ['loser'],
+      tags: ['新款'],
       count: 1,
       univalent: 299, sum: 299,
       choose: false,
@@ -40,8 +40,8 @@ const App: React.FC = () => {
     },
     {
       id: "3",
-      desc: '皮夹克皮夹克皮夹克皮夹克皮夹克皮夹克',
-      tags: ['cool', 'teacher'],
+      desc: '皮夹克皮夹克皮夹克皮夹克皮夹克皮夹克皮夹克皮夹克皮夹克皮夹克皮夹克皮夹克',
+      tags: ['潮流', '夹克'],
       univalent: 512,
       sum: 512,
       count: 1,
@@ -50,13 +50,14 @@ const App: React.FC = () => {
     },
   ])
   const [chooseAll, setChooseAll] = useState<boolean>(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDelete = (data: DataType) => {
     setIsModalOpen(true);
     console.log("商品信息", data);
   }
 
-  const handleChecked = (choose: boolean) => {
+  const handleChecked = (choose: React.ChangeEvent<HTMLInputElement>) => {
     console.log("choose", choose);
   }
 
@@ -71,9 +72,6 @@ const App: React.FC = () => {
 
   }
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-
   const handleOk = () => {
     setIsModalOpen(false);
   };
@@ -82,11 +80,43 @@ const App: React.FC = () => {
     setIsModalOpen(false);
   };
 
-  const handleChooseAll = () => {
-    let temp = data.map(item => {
-      item.choose = true
-    })
-    setData(temp)
+
+  useEffect(() => {
+    handleChooseAll(chooseAll)
+  }, [chooseAll])
+
+  const handleChooseAll = (chooseAll: boolean) => {
+    if (chooseAll) {
+      setData(pre => {
+        return pre.map(item => {
+          return {
+            id: item.id,
+            desc: item.desc,
+            tags: item.tags,
+            univalent: item.univalent,
+            sum: item.sum,
+            count: item.count,
+            cover: item.cover,
+            choose: true
+          }
+        })
+      })
+    } else {
+      setData(pre => {
+        return pre.map(item => {
+          return {
+            id: item.id,
+            desc: item.desc,
+            tags: item.tags,
+            univalent: item.univalent,
+            sum: item.sum,
+            count: item.count,
+            cover: item.cover,
+            choose: false
+          }
+        })
+      })
+    }
   }
 
   return <>
@@ -100,10 +130,10 @@ const App: React.FC = () => {
         }}
         dataIndex="choose"
         key="choose"
-        width="120px"
+        width="88px"
         render={(choose: boolean) => (
           <>
-            <input className={s.checkbox} type="checkbox" checked={choose} onChange={() => handleChecked(choose)} />
+            <input className={s.checkbox} type="checkbox" checked={choose} onChange={(value) => handleChecked(value)} />
           </>
         )}
       />
@@ -114,7 +144,7 @@ const App: React.FC = () => {
         render={(cover: string, firstName: string) => {
           return <img className={s.cover} src={cover} alt={firstName}></img>
         }} />
-      <Column title="服装信息" dataIndex="desc" key="desc" />
+      <Column title="服装信息" dataIndex="desc" key="desc" width="200px" />
       <Column title="单价" dataIndex="univalent" key="univalent" render={(univalent: number) => <span className={s.univalent}>￥{univalent}</span>} />
       <Column title="数量" dataIndex="count" key="count" render={(count: number) => {
         return <div style={{ width: '120px' }}>

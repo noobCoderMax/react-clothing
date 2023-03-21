@@ -6,9 +6,14 @@ import type { TabsProps } from 'antd';
 import TabMine from "../../components/TabMine";
 import TabLike from "../../components/TabLike";
 import TabHistory from "../../components/TabHistory";
-import { uploadQn } from "../../api/other/qiniu";
+import { uploadQn, uploadUrl } from "../../api/other/qiniu";
 import { UserInfo } from "../../global";
 import Loading from "../../components/Loading";
+import TabEmail from "../../components/TabEmail";
+import { linkUrl } from "../../utils/uploader";
+import { useUserStore } from "../../store";
+import TabPassword from "../../components/TabPassword";
+import TabAddress from "../../components/TabAddress";
 
 export enum Gender {
   male = 0,
@@ -19,17 +24,20 @@ export enum Gender {
 const spanBgc = ['#02b5da', '#5fd4f2', '#f3a034', '#fbc7f5']
 
 const Mine: React.FC = () => {
+  const { userInfo, getToken, setUserInfo } = useUserStore()
+
   const [title, setTitle] = useState<string>('')
   const [user, setUser] = useState<UserInfo>({
-    avator: "http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg",
-    nickname: "宋祖儿",
+    avator: "http://test.kuugacoder.top/szr1.jpeg",
+    nickname: "明天会更好吗",
     gender: 1,
     email: "1914275425@qq.com",
     sign: "你每天会忘记上千件事，为何不把这件事也忘了?",
-    tips: ['新用户', 'VIP', '服装达人'],
+    tips: ['新用户', 'VIP', '服装新秀'],
     birth: "",
     phone: "",
-    age: 0
+    age: 0,
+    userName: ""
   })
 
   const items: TabsProps['items'] = [
@@ -47,6 +55,21 @@ const Mine: React.FC = () => {
       key: '3',
       label: `我的足迹`,
       children: <TabHistory />,
+    },
+    {
+      key: '4',
+      label: `邮箱换绑`,
+      children: <TabEmail />,
+    },
+    {
+      key: '5',
+      label: `更换密码`,
+      children: <TabPassword />,
+    },
+    {
+      key: '6',
+      label: "收获地址",
+      children: <TabAddress />
     }
   ];
 
@@ -75,13 +98,9 @@ const Mine: React.FC = () => {
     //   console.log("base64", data.target?.result);
     // };
     // reader.readAsDataURL(file);
-
-    const url = await uploadQn(file)
-    if (typeof url === "undefined") {
-      console.log("上传有问题");
-    } else {
-      console.log("在线图床", url);
-    }
+    const res = await uploadQn(file)
+    const temp = linkUrl(res.data.key)
+    setUser(pre => ({ ...pre, avator: temp }))
   }
 
   return <div>

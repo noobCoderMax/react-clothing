@@ -45,7 +45,8 @@ const routeItems: routeLink[] = [
 
 const Header: React.FC = () => {
   const navigate = useNavigate()
-  const useInfo = useUserStore(state => state.userInfo)
+  const { avator, userName } = useUserStore(state => state.userInfo)
+  const { clearUserInfo } = useUserStore()
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const linkTo = (router: string) => {
@@ -61,6 +62,7 @@ const Header: React.FC = () => {
   }
 
   const handleOk = () => {
+    clearUserInfo()
     setIsModalOpen(false);
     navigate('/login')
   };
@@ -72,7 +74,7 @@ const Header: React.FC = () => {
   const handleToMine = () => {
     navigate("/mine")
   }
-  s.header_router
+  // s.header_router
   return <div className={s.position}>
     <div className={s.header}>
       <div className={s.header_icon}>
@@ -85,10 +87,10 @@ const Header: React.FC = () => {
       }
       <div className={s.header_nickname}>
         {
-          useInfo ?
+          avator !== undefined || null ?
             <div className={s.login_true} onClick={handleLoginOut}>
-              <img className={s.login_true_avator} src={useInfo.avator} alt="avator" onClick={handleToMine} />
-              <div className={s.login_true_username}>{useInfo.nickname}</div>
+              <img className={s.login_true_avator} src={avator} alt="avator" onClick={handleToMine} />
+              <div className={s.login_true_username}>{userName}</div>
             </div>
             :
             <div className={s.login_false}>

@@ -2,22 +2,24 @@
   position: sticky;
   top: 0;
   left: 0;
-  width: 100%;
-  background-color: #ffffff;
+  width: 100vw;
+  background-color: #74ECA6;
   z-index: 99;
+  overflow: hidden;
 }
 
 .header {
   position: relative;
   box-shadow: @box-s;
   display: flex;
-  height: 80px;
-  line-height: 80px;
+  height: 50px;
+  line-height: 50px;
+  background-color: #ffffff;
 
   &_icon {
     width: 158px;
     border: 1px solid transparent;
-    height: 78px;
+    height: 50px;
     text-align: center;
     cursor: pointer;
 
@@ -32,11 +34,11 @@
 
   &_router {
     position: relative;
-    font-size: 20px;
+    font-size: 16px;
     font-family: 'Courier New', Courier, monospace;
     width: 100px;
     text-align: center;
-    padding: 0 1rem;
+    // padding: 0 1rem;
     cursor: pointer;
 
     &::after {
@@ -45,14 +47,14 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 3px;
+      border-radius: 1px;
+      height: 2px;
       background-color: transparent;
     }
 
     &:hover::after {
       background-color: skyblue;
-      transition: all .5s ease-in;
-
+      transition: all .3s ease-in;
     }
   }
 
@@ -61,12 +63,12 @@
     right: 0;
     top: 0;
     width: 200px;
-    height: 80px;
+    height: 50px;
     text-align: center;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     overflow: hidden;
-    transform: translateX(180px);
+    transform: translateX(142px);
     transition: all .4s ease;
 
     &:hover {
@@ -86,18 +88,17 @@
 
 .login_true {
   width: 100%;
-  height: 80px;
+  height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   background-color: #00CDD7;
 
-
   &_avator {
     border-radius: 30px;
-    margin: 10px 20px;
-    height: 60px;
-    width: 60px;
+    margin: 5px 10px;
+    height: 40px;
+    width: 40px;
     cursor: pointer;
   }
 
@@ -105,8 +106,8 @@
     cursor: pointer;
     flex-grow: 1;
     text-align: center;
-    height: 80px;
-    line-height: 80px;
+    height: 50px;
+    line-height: 50px;
     font-size: 16px;
     color: black;
     text-align: start;

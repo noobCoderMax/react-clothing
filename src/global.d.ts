@@ -1,5 +1,18 @@
 import { AxiosResponse } from 'axios';
 
+declare module 'axios' {
+  interface AxiosResponse<T = any> {
+    (config:AxiosResponse):Promise<any>,
+    // 这个地方放属性
+    data:RD
+ }
+}
+
+type RD = {
+  data: any,
+  success: boolean,
+  message:string
+}
 declare module 'golbal' {
   export enum Gender {
     male = 0,
@@ -34,6 +47,8 @@ declare module 'golbal' {
   }
 }
 export interface UserInfo {
+  id:string,
+  userName: string;
   nickname: string;
   email: string;
   avator: string;
@@ -43,7 +58,20 @@ export interface UserInfo {
   tips?: string[],
   age?: number;
   phone?: string;
-  token?:string
+  token?: string,
+  addressList?:addressForShop[]
+}
+
+// 收货地址
+interface addressForShop {
+  id:string,
+  province: string,
+  city: string,
+  district: string,
+  detail: string,
+  userName: string,
+  phone: string,
+  userId?:string
 }
 
 export type axiosResult = {
@@ -56,7 +84,7 @@ export type axiosResult = {
 export type LoginForm = {
   email: string,
   password: string,
-  svgCode:string
+  svg_code:string
 }
 
 // 注册表单
@@ -112,4 +140,14 @@ export interface History {
   img: string,
   title: string
   createTime: string
+}
+
+export interface Collection {
+  id: string,
+  userId?: string,
+  img: string,
+  title: string,
+  mood: string,
+  style: string,
+  createTime:string
 }

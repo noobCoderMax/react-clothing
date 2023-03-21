@@ -4,6 +4,15 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
+  // server: {
+  //   proxy: {
+  //     '/api': {
+  //       target: "http://192.168.0.9:5555",
+  //       changeOrigin: true,
+  //       rewrite: (path) => path.replace(/^\/api/,"")
+  //     }
+  //   }
+  // },
   css: {
     modules: {
       generateScopedName: "[name]__[local]___[hash:base64:5]",

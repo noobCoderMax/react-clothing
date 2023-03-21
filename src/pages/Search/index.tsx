@@ -1,9 +1,9 @@
-import { GoodType } from "golbal";
 import React, { useEffect, useState } from "react";
 import CategoryList from "../../components/CategoryList";
 import CategorySearch from "../../components/CategorySearch";
 import Header from "../../components/Header";
 import PopularrRcommend from "../../components/PopularRecomme";
+import { GoodType } from "../../global";
 import s from './index.module.less'
 
 const Search: React.FC = () => {

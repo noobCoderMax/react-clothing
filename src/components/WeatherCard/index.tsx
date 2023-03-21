@@ -1,3 +1,4 @@
+import { Button, Input } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import s from './index.module.less'
@@ -55,9 +56,8 @@ const WeatherCard: React.FC = () => {
   return <div className={s.weather}>
     <div className={s.weather_city}>
       <div className={s.weather_city_op}>
-        <div>{city}</div>
-        <input type="text" value={city} onChange={e => setCity(e.target.value)} />
-        <button style={{ cursor: "pointer" }} onClick={() => handleCity()}>搜索</button>
+        <Input size="small" style={{ width: '100px' }} value={city} onChange={e => setCity(e.target.value)}></Input>
+        <Button style={{ marginRight: '10px' }} onClick={() => handleCity()}>搜索</Button>
       </div>
       <div className={s.weather_city_tem}>
         <div className={s.weather_city_tem_number}>{weather.tem} </div>
@@ -73,7 +73,7 @@ const WeatherCard: React.FC = () => {
       <div className={s.weather_info_common}><span>最高温度:</span><span>{weather.tem_day}℃</span>   </div>
       <div className={s.weather_info_common}><span>最低温度:</span><span>{weather.tem_night}℃ </span></div>
     </div>
-  </div>
+  </div >
 }
 
 export default WeatherCard

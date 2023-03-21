@@ -16,19 +16,23 @@ const { TextArea } = Input;
 
 const TabMine: FC = () => {
   const userInfo = useUserStore(state => state.userInfo)
+  console.log("store_userInfo", userInfo);
+  const [componentDisabled, setComponentDisabled] = useState<boolean>(true);
   const [updateForm, setUpdateForm] = useState<UserInfo>({
-    avator: userInfo.avator,
+    avator: "",
     email: userInfo.email,
     phone: '',
-    nickname: '',
+    nickname: userInfo.nickname,
     gender: Gender.unknown,
-    sign: '',
+    sign: userInfo.sign,
     tips: userInfo.tips,
-    birth: "",
+    birth: userInfo.birth,
+    userName: ""
   })
 
   const submitForm = () => {
     console.log("TabMinePage", updateForm);
+    setComponentDisabled(pre => !pre)
   }
 
   const resetForm = () => {
@@ -38,7 +42,8 @@ const TabMine: FC = () => {
       nickname: '',
       gender: Gender.unknown,
       sign: '',
-      birth: ""
+      birth: "",
+      userName: ""
     })
   }
 
@@ -47,7 +52,7 @@ const TabMine: FC = () => {
       labelCol={{ span: 4 }}
       wrapperCol={{ span: 16 }}
       layout="horizontal"
-      disabled={false}
+      disabled={componentDisabled}
       style={{ maxWidth: 660 }}
     >
       <Form.Item label="用户昵称">
@@ -89,9 +94,23 @@ const TabMine: FC = () => {
         />
       </Form.Item>
 
-      <div className={s.submit}>
-        <Button onClick={resetForm} style={{ marginRight: '10px' }}>重置</Button>
-        <Button onClick={submitForm} type="primary" style={{ marginRight: '100px' }}>提交</Button>
+      <div style={{ display: componentDisabled === true ? "none" : "block" }}>
+        <div className={s.submit}>
+          <Button onClick={resetForm} style={{ marginRight: '10px' }} >重置</Button>
+          <Button onClick={submitForm} type="primary" style={{ marginRight: '110px' }} >提交</Button>
+        </div>
+      </div>
+
+      <div style={{ display: componentDisabled === false ? "none" : "block" }}>
+        <div className={s.submit}>
+          <Button
+            type="primary"
+            style={{ marginRight: '110px' }}
+            onClick={() => setComponentDisabled(pre => !pre)}
+            disabled={!componentDisabled}>
+            修改
+          </Button>
+        </div>
       </div>
     </Form>
   </div>

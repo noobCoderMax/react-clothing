@@ -18,37 +18,10 @@
 
     &_op {
       display: flex;
-      height: 30px;
+      flex-direction: row;
+      gap: 10px;
+      justify-content: space-between;
       font-size: 14px;
-      border: 1px solid transparent;
-
-      div {
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
-        margin: 0 5px;
-        border: 1px solid transparent;
-        font-weight: bolder;
-      }
-
-      input {
-        margin: 5px;
-        width: 50px;
-        height: 20px;
-        border-radius: 5px;
-        line-height: 20px;
-        border: 1px solid #559cbb;
-        outline: none;
-        text-align: center;
-        background-color: #a7ffff;
-
-      }
-
-      button {
-        margin: 0 5px;
-        border: 1px solid transparent;
-        height: 30px;
-      }
     }
 
     &_tem {
@@ -122,5 +95,22 @@
       }
 
     }
+  }
+}
+
+.btn {
+  cursor: pointer;
+  transition: all .1s ease;
+  border-radius: 4px;
+  color: white;
+  background-color: chocolate;
+
+  button {
+    border: none;
+    outline: none;
+  }
+
+  &:hover{
+    color: black;
   }
 }

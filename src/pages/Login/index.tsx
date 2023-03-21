@@ -17,7 +17,7 @@ const Login: React.FC = () => {
   const { setUserInfo, getToken } = useUserStore()
   const { post: postLoginValue } = useAxio({ showLoading: true, handleError: false })
 
-  const [loginValue, setLoginValue] = useState<LoginForm>({ email: "1914275425@qq.com", password: "191427", svgCode: "" });
+  const [loginValue, setLoginValue] = useState<LoginForm>({ email: "", password: "", svg_code: "" });
   const [registerValue, setRegisterValue] = useState<registerForm>({
     email: "",
     password: "",
@@ -27,24 +27,14 @@ const Login: React.FC = () => {
 
   const toLoginApi = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
-    // const response: ajaxRespones = await postLoginValue("/user/login", loginValue, { timeout: 20000 })
-    // if (response.success) {
-    //   setUserInfo(response.data)
-    //   navigate("/index")
-    // } else {
-    //   alert(`密码错误${response.message}`)
-    // }
-    setUserInfo({
-      nickname: "kuuga",
-      email: "1223213@qq.com",
-      avator: "http://piccn.ihuaben.com/pic/community/201811/11316158-1541994582483-9N5H_1200-1200.jpeg",
-      gender: 1,
-      age: 19,
-      phone: "12323994",
-      token: "232323eewqeq"
+    await postLoginValue<{ success: boolean, message: string, data: any }>("/user/login", loginValue, { timeout: 500000 }).then(res => {
+      console.log("用户信息", res.data);
+      setUserInfo(res.data as any)
+      navigate("/index")
+      messageApi.success("登录成功!")
+    }).catch(err => {
+      messageApi.error("服务器出错了!")
     })
-    navigate("/index")
-    messageApi.success("登录成功!")
   };
   const toRegisterApi = () => {
     console.log("registerValue", registerValue);
@@ -112,12 +102,12 @@ const Login: React.FC = () => {
                     className={s.svgCode_input}
                     type="text"
                     placeholder="验证码"
-                    value={loginValue.svgCode}
+                    value={loginValue.svg_code}
                     onChange={e =>
                       setLoginValue((pre: LoginForm) => {
                         return {
                           ...pre,
-                          svgCode: e.target.value,
+                          svg_code: e.target.value,
                         };
                       })
                     }

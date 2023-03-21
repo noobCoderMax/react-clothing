@@ -9,12 +9,17 @@ export type storageUser = {
   token:string
 }
 
-const getLocalStorageUserInfo = (): UserInfo => {
-  return myLocal.get(UserLocalKey) 
+const getLocalStorageUserInfo = () => {
+  const result = myLocal.get(UserLocalKey)
+  return result.user
 }
 
 const setLocalStorageUserInfo = (value:UserInfo):void => {
    myLocal.set(UserLocalKey,value)
+}
+
+const clearLocalStorageUserInfo = () => {
+  myLocal.remove(UserLocalKey)
 }
 
 const getLocalStorageToken = () => {
@@ -52,6 +57,7 @@ const setLocalMood = (value: string) => {
 export {
   getLocalStorageUserInfo,
   setLocalStorageUserInfo,
+  clearLocalStorageUserInfo,
   getLocalStorageToken,
   getLocalStorageBuyStore,
   setLocalStorageBuyStore,

@@ -1,10 +1,14 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, RawAxiosRequestConfig } from "axios";
 import { useNavigate } from "react-router-dom";
 import { useLoadingStore } from '../store/index'
+
 const request = axios.create({
-  baseURL: "http://localhost:5555",
-  timeout: 10000
+  baseURL: "http://192.168.0.9:5555",
+  // baseURL: "/api",
+  timeout: 10000,
+  withCredentials: true
 })
+// request.defaults.withCredentials = true
 
 request.interceptors.request.use((config: AxiosRequestConfig) => {
   return config
@@ -13,7 +17,7 @@ request.interceptors.request.use((config: AxiosRequestConfig) => {
 request.interceptors.response.use((response) => {
   return response.data
 }, (error: AxiosError) => {
-
+  console.log("request.interceptors.response", error);
 })
 
 type Options = {
@@ -31,6 +35,7 @@ const useAxio = (option?: Options) => {
   const table: Record<string, undefined | (() => void)> = {
     401: () => {
       alert("请登录后访问")
+      nav('/login')
     },
     402: () => {
       alert("需要付费")
@@ -53,25 +58,25 @@ const useAxio = (option?: Options) => {
   }
 
   const ajax = {
-    get: (path: string, config?: RawAxiosRequestConfig) => {
-      return request.get(path, config).catch(onError)
+    get: <T,>(path: string, config?: RawAxiosRequestConfig) => {
+      return request.get<T>(path, config).catch(onError)
     },
-    post: (path: string, data?: any, config?: RawAxiosRequestConfig) => {
+    post: <T,>(path: string, data?: any, config?: RawAxiosRequestConfig) => {
       if (showLoading) setLoading(true)
-      return request.post(path, data, config)
+      return request.post<T>(path, data, config)
         .finally(() => {
           if (showLoading)
             setLoading(false)
         })
     },
-    put: (path: string, data?: any, config?: RawAxiosRequestConfig) => {
-      return request.put(path, data, config).catch(onError)
+    put: <T,>(path: string, data?: any, config?: RawAxiosRequestConfig) => {
+      return request.put<T>(path, data, config).catch(onError)
     },
-    petch: (path: string, data?: any, config?: RawAxiosRequestConfig) => {
-      return request.patch(path, data, config).catch(onError)
+    patch: <T,>(path: string, data?: any, config?: RawAxiosRequestConfig) => {
+      return request.patch<T>(path, data, config).catch(onError)
     },
-    delete: (path: string, config?: RawAxiosRequestConfig) => {
-      return request.delete(path, config).catch(onError)
+    delete: <T,>(path: string, config?: RawAxiosRequestConfig) => {
+      return request.delete<T>(path, config).catch(onError)
     }
   }
 
